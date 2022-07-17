@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+    
+<link rel="stylesheet" href="/src/main/resources/static/css/style_Formulario.css">    
+    
+</head>
+
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container">
+            <div class="titulo">Registro de usuario</div>
+            <form action="/usuarios/regis_user" method="post" id="formuser">
+                <div class="datos-producto">
+                    
+                    <div class="input-box">
+                        <span class="detalles">Username:</span>
+                        <input type="text" id="username" name="username" placeholder="Username" autofocus required  th:value="${recon}">
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Password:</span>
+                        <input type="text" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-box">
+                        <div class="select">
+                            <span class="detalles">Rol:</span>
+                            <select name="id_rol" id="formato" style="width: 280px; padding: 0 5px;" required>
+                                <option value="" selected disabled>Escoge un rol</option>
+                                <option class="fst-italic" th:each="rol : ${roles}" th:value="${rol.id_rol}"
+                                    th:text="${rol.nombre_rol}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-box">
+                        <span class="detalles">Trabajador:</span>
+                        <select name="id_traba" id="trabajador" style="width: 280px; padding: 0 5px;" required>
+                            <option value="" selected disabled>Escoge un trabajador</option>
+                            <option class="fst-italic" th:each="trabajador : ${trabajadores}" th:value="${trabajador.dni_traba}" th:if="${trabajador.dni_traba != '00000000'}"
+                                th:text="${trabajador.nombre_traba + ' ' + trabajador.apellido_traba}">
+                            </option>
+                            </select>
+                    </div>
+                </div>
+                <section class="layout" style="margin-top: 180px;">
+                    <div class="b1"><button id="btn" class="button btn-success" onclick="modal(this,'guardar','formuser')" disabled type="submit" value="Registrar">Registrar</button></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/usuarios';"
+                            type="button" value="Cancelar"></div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("username").value.length;
+            t2 = document.getElementById("password").value.length;
+            t3 = document.getElementById("formato").value;
+            t4 = document.getElementById("trabajador").value;
+            if (t1 >= 3 && t2 >= 5 && t3 != "" && t4 != "") {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("username").addEventListener("keyup", habilitar);
+        document.getElementById("password").addEventListener("keyup", habilitar);
+        document.getElementById("formato").addEventListener("change", habilitar);
+        document.getElementById("trabajador").addEventListener("change", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+</html>

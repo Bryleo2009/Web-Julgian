@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/*--------SEPARADORES----------*/
+.layout1 {
+    width: 100%;
+    height: 200px;
+    
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.layout2 {
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+  
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.layboton {
+    width: 100%;
+    justify-content: center;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2,100px);
+    gap: 8px;
+}
+/*--------CONTENEDORES---------*/
+.seccion1{
+	width: 600px;
+	height: 200px;
+}
+.seccion2{
+	width: 600px;
+	height: 100px;
+}
+.seccion3{
+	max-width: 600px;
+    margin-bottom: 30px;
+}
+.seccion4{
+	width: 600px;
+    padding-left: 350px;
+    padding-bottom: 20px;
+}
+.seccion5{
+	width: 600px;
+    align-content: center;
+}
+/*--------GENERALES--------*/
+/*oculat la flecha de select*/
+*{
+    font-family: 'Poppins', sans-serif;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+/*-------ESPACIO 1---------*/
+.espacio11{
+    height: 100px;
+    width: 50px;
+    background-color: #00B8A8;
+}
+/*-------ESPACIO 2---------*/
+.espacio2 select{
+    display: block;
+    width: 296px;
+    height: 50px;
+    border: none;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: right;
+    color: #00B8A8;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.espacio2 select:hover{
+    color: #00b8a9cb;
+}
+.espacio2 span{
+    color: #00B8A8;
+    font-size: 15px;
+    padding-left: 91px; /*REVISAR como centrar, solo se centro con padding*/
+}
+.espacio2 input{
+    width: 120px;
+    border: none;
+    color: white;
+}
+.espacio2 input:valid{
+    color: rgb(167, 164, 164);
+}
+/*-------ESPACIO 3---------*/
+.espacio3 input{
+    height: 30px;
+    border: none;
+    color: rgb(167, 164, 164);
+}
+.espacio3--nom{
+    width: 280px;
+    font-size: 25px;
+}
+.espacio3--nom:valid{
+    color: #00B8A8;
+}
+.espacio3--id{
+    width: 120px;
+    padding-left: 10px;
+}
+/*-------ESPACIO 4---------*/
+.espacio4{
+	padding-left: 100px
+}
+.espacio4 input{
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    margin-bottom: 10px;
+}
+.espacio4 input:valid{
+    color: #0c524c;
+}
+.espacio4 span{
+    display: block;
+    text-align: center;
+    color: #00B8A8;
+    font-weight: bold;
+}
+.espacio4 select{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+    color: rgb(167, 164, 164);
+}
+.espacio4 select:hover{
+    background-color: rgb(230, 230, 230);
+}
+/*-------SECCION 3---------*/
+
+/*-------SECCION 4---------*/
+.seccion41{
+    width: 250px;
+}
+.seccion41 span{
+    color: #757575;
+    font-size: 15px;
+}
+.seccion41--sub{
+    padding-left: 5px;
+}
+.seccion41--total{
+    padding-left: 25px;
+}
+.seccion4 input{
+    border: none;
+    margin-bottom: 5px;
+    width: 150px
+}
+.seccion4 input:valid{
+    color: #0c524c;
+}
+/*-------SECCION 5---------*/
+.seccion5 a{
+    width: 100px;
+    height: 30px;
+    border: none;
+    color: white !important;
+    text-align: center;
+    background-color: #0c524c;
+}
+.seccion5 a:hover{
+    background-color: #008b80;
+    cursor: pointer;
+}

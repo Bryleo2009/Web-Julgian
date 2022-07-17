@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <!--metadatos-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Bryan A. Morán Vega" />
+    <meta name="copyright" content="Of System ®" />
+    <!--íconos de la web-->
+    <script src="https://kit.fontawesome.com/1f84f73194.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <!--icono-->
+    <link rel="icon" href="../../img/SystemLogo.png" />
+    <!--boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/style_dash.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/dash.js"></script>
+    <script src="../../js/confirma.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--título-->
+    <title>Julgian Collection</title>
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header" th:fragment="header">
+        <div class="header_toggle">
+            <i class="bx bx-menu" id="header-toggle" title="Menú"></i>
+        </div>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <h2 class="nick" th:text="${nick.user.dni_traba.nombre_traba}"></h2>
+        <!-- <h2 class="nick" name="nick_id_user" th:text="${nick.user.id_user}"></h2> -->
+
+        <div class="header_img">
+            <!-- <img src="https://i.imgur.com/hczKIze.jpg" alt="" /> -->
+            <div class="m-b-25" style="text-align: center;" th:if="${nick.user.dni_traba.imagen != '' && nick.user.dni_traba.imagen != null}">
+                <img th:src="@{'/recursos/'+${nick.user.dni_traba.imagen}}" th:alt="${nick.user.dni_traba.imagen}" 
+                style="color: #000; border-radius: 50%; margin-bottom: 10px;width: 25px;">
+            </div>
+            <div class="m-b-25" style="text-align: center;"th:if="${nick.user.dni_traba.imagen == '' or nick.user.dni_traba.imagen == null}">
+                <i class="bi bi-person-circle" style="font-size: 30px;"></i>
+            </div>
+        </div>
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <a th:href="@{/dashboard}" class="nav_logo">
+                    <img src="../../img/SystemLogo.png" style="width: 45px;">
+                    <span class="nav_logo-name">Julgian Collection</span>
+                </a>
+                <!--menu 0 - solo el menu cambia segun el tipo de rol-->
+                <div>
+                    <div class="nav_list" th:if="${nick.user.estado_user == true}">
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'dashboard')} ? active"
+                            th:href="@{/dashboard}" title="Dashboard">
+                            <i class="bx bx-grid-alt nav_icon"></i>
+                            <span class="nav_name">Dashboard</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'perfil')}? active"
+                            th:href="@{/perfil}" title="Mi Perfil">
+                            <i class="bi bi-emoji-laughing"></i>
+                            <span class="nav_name">Mi Perfil</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'reportes')}? active"
+                            th:href="@{/graw}" title="Reportes">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                            <span class="nav_name">Reportes</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'busquedas')}? active"
+                            th:href="@{/busquedas}" title="Busquedas">
+                            <i class="bi bi-zoom-in"></i>
+                            <span class="nav_name">Busquedas</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'productos')}? active"
+                            th:href="@{/productos}" title="Productos">
+                            <i class="bi bi-archive-fill"></i>
+                            <span class="nav_name">Productos</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'categorias')}? active"
+                            th:href="@{/categorias}" title="Categorias">
+                            <i class="bi bi-tags-fill"></i>
+                            <span class="nav_name">Categorias</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'comprobantes')}? active"
+                            th:href="@{/comprobantes}" title="Comprobantes">
+                            <i class="bi bi-clipboard-check"></i>
+                            <span class="nav_name">Comprobantes</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'trabajadores')}? active"
+                            th:href="@{/trabajadores}" sec:authorize="hasRole('ROLE_GERENTE')" title="Empleados">
+                            <i class="bi bi-people-fill"></i>
+                            <span class="nav_name">Empleados</span>
+                        </a>
+                        <a class="nav_link" th:classappend="${#strings.equals(activo,'usuarios')}? active"
+                            th:href="@{/usuarios}" sec:authorize="hasRole('ROLE_GERENTE')" title="Usuarios">
+                            <i class="bi bi-person-circle"></i>
+                            <span class="nav_name">Usuarios</span>
+                        </a>
+                    </div>
+                </div>
+                <a th:href="@{/logout}" class="nav_link trigger" onclick="modal(this,'sesion')" title="Cerrar Sesion">
+                    <i class="bx bx-log-out nav_icon"></i><span class="nav_name">Cerrar Sesion</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="height-100 bg-light">
+
+    </main>
+
+    <footer th:fragment="footer">
+        <link rel="stylesheet" href="../../css/style_footer.css" />
+        <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3 text-md-center">
+                        <h5 style="margin-bottom:50px;">
+                            <span>
+                                <img src="../../img/SystemLogo.png" aria-hidden="true" style="width: 60px"
+                                    alt="" /></span><b> Julgian Collection ®</b>
+                        </h5>
+                    </div>
+                    <div class="col-sm-3 my-sm-0 mt-5">
+
+                    </div>
+                    <div class="col-sm-3 my-sm-0 mt-5">
+
+                    </div>
+                    <div class="col-sm-3 my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0">Contacto</li>
+                            <li>+51 994 271 287</li>
+                            <li><a class="Careers"
+                                    href="https://www.google.com/maps/place/Gamarra,+La+Victoria+15018/data=!4m2!3m1!1s0x9105c89ec2a832cf:0x64b6a4e4b20a589d?sa=X&ved=2ahUKEwijnunFrcL4AhVNRzABHdiRAwEQ8gF6BAgJEAE">Ubicacion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-0 pt-0 row-1 mb-0 px-sm-3 px-2">
+            <div class="col-12">
+                <div class="row my-4 row-1 no-gutters">
+                    <div class="col-sm-3 col-auto text-center">
+                        <small>&#9400; Of System</small>
+                    </div>
+                    <div class="col-md-3 col-auto"></div>
+                    <div class="col-md-3 col-auto"></div>
+                    <div class="col my-auto text-md-left text-right">
+                        <small>
+                            julgian.collection@gmail.com
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+<!-- Esto va en los demas documentos -->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+</head>
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+</body>
+</html> -->

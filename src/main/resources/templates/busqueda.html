@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+</head>
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div div class="container" style="min-width: 1000px;">
+
+            <div align="center">
+                <h2 class="mb-5 text-uppercase">Tablas de búsquedas</h2>
+                <div class="row">
+                    
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-title h4 my-3">
+                                Productos
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-4"><i class="bi bi-archive-fill display-1" style="color: #2eb388;"></i></div>
+                                <span class="d-block mb-3">Búsqueda de todos los productos, con filtros de nombre y categoría.</span>
+                                <div class="mt-auto">
+                                    <a th:href="@{/busquedas/productos}" class="button btn btn-outline-success">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-title h4 my-3">
+                                Comprobantes
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-4"><i class="bi bi-clipboard-check-fill display-1" style="color: #2eb388;"></i></div>
+                                <span class="d-block mb-3">Búsqueda de todos los productos, con filtros de cliente y fecha.</span>
+                                <div class="mt-auto">
+                                    <a th:href="@{/busquedas/comprobantes}" class="button btn btn-outline-success">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card  h-100">
+                            <div class="card-title h4 my-3">
+                                Trabajadores
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-4"><i class="bi bi-people-fill display-1" style="color: #2eb388;"></i></div>
+                                <span class="d-block mb-3">Búsqueda de los trabajadores de la empresa, con filtros de DNI y nombre.</span>
+                                <div class="mt-auto">
+                                    <a th:href="@{/busquedas/trabajadores}" class="button btn btn-outline-success">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <style>
+            .bg-light > .container {
+                height: calc(100vh - 100px);    
+            }
+            .card {
+                border-color: #2eb388;
+                /*margin-bottom: 1.6rem;*/
+            }
+        </style>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+</body>
+</html>

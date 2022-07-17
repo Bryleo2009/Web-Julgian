@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla :: head">
+    
+</head>
+
+ <link rel="stylesheet" href="../../css/style_Listar.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        
+        <div class="container">
+      <h2 class="mb-5">Lista de Rol</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+
+            <th style="width: 7px;">#</th>            
+            <th>Rol</th>
+            <th style="text-align: center; width: 200px;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="rol : ${roles}">
+            <td th:text="${rol.id_rol}"></td>
+            <td th:text="${rol.nombre_rol}"></td>
+            
+            <td style="text-align: center;">
+              <a th:href="@{/roles/edit_rol/(id_rol=${rol.id_rol})}"><i class="bi bi-pencil"></i></a>
+              <a th:href="@{/roles/eliminar_rol/(id_rol=${rol.id_rol})}" onclick="modal(this,'eliminar')"><i class="bi bi-trash3-fill"></i></a>
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+      <section class="layout">
+        <div></div>
+        <div><a th:href="@{/roles/new_rol}" type="button" class="button btn btn-outline-success">Agregar Rol</a></div>
+      </section>
+    </div>
+
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    
+    <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+</html>

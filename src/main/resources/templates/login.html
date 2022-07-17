@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head th:replace="plantilla :: head">
+    </head>
+    <body>
+        <div>
+            <h1 class="display-1">LOGIN FACHEROOOOO</h1>
+            <img class="ms-4" src="https://i.emezeta.com/weblog/nyan-cat/nyan-cat-animated.gif" alt="alt"/>
+            <form class="fs-1" th:action="@{/}" method="post">
+                <input type="text" name="username" autofocus placeholder="tu name bro">
+                <input type="password" name="password" placeholder="tu contra">
+                <input type="submit" value="Gogo">
+            </form>
+        </div>
+    </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style_login.css">
+    <link rel="icon" href="../../img/SystemLogo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <div class="container">
+        <form  th:action="@{/}" method="post" class="login">
+            <img src="../../img/SystemLogo.png" style="width: 100px;">
+            <h2 style="margin-top: 25px;">Julgian Collection</h2>
+
+            <div class="inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" style="width: 35px; height: 35px; padding: 0;">
+                    <path fill="#01D28E"  d="M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z"/>
+                </svg><input type="text" name="username" placeholder="Usuario" autofocus>
+            </div>
+            <div class="inputs">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" style="width: 35px; height: 35px; padding: 0;">
+                    <path fill="#01D28E" d="M282.3 343.7L248.1 376.1C244.5 381.5 238.4 384 232 384H192V424C192 437.3 181.3 448 168 448H128V488C128 501.3 117.3 512 104 512H24C10.75 512 0 501.3 0 488V408C0 401.6 2.529 395.5 7.029 391L168.3 229.7C162.9 212.8 160 194.7 160 176C160 78.8 238.8 0 336 0C433.2 0 512 78.8 512 176C512 273.2 433.2 352 336 352C317.3 352 299.2 349.1 282.3 343.7zM376 176C398.1 176 416 158.1 416 136C416 113.9 398.1 96 376 96C353.9 96 336 113.9 336 136C336 158.1 353.9 176 376 176z"/></svg>
+                <input type="password" name="password" id="password" placeholder="Contraseña"  >
+      <div class="input-group-append">
+            <button id="show_password" class="btn btn-primary" style="background-color: rgba(240, 255, 255, 0); border: none;" type="button" onclick="mostrarPassword()"> 
+                <span class="fa fa-eye-slash icon" style="font-size: 25px; color: #01D28E;"></span> 
+            </button>
+          </div>
+            </div>
+
+
+            <div class="btn">
+                <input type="submit" value="Entrar">
+            </div>
+
+        </form>
+    </div>
+
+
+    <script src="../../js/particles.js"></script>
+    <script src="../../js/app.js"></script>

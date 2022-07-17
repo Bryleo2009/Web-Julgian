@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+
+
+
+
+<body id="body-pd">
+  <header th:replace="plantilla :: header"></header>
+  <link rel="stylesheet" href="../../css/style_registro.css">
+  <main class="height-100 bg-light">
+    <div class="container" style="height: auto; min-width: 90%;">
+
+      <div class="card">
+        <div class="row">
+
+          <div class="title" style="margin-bottom: 0px;">
+            <div class="row" style="padding: 20px;">
+              <div class="col">
+                <h4><b>Lista de productos a comprar</b></h4>
+              </div>
+              
+            </div>
+          </div>
+          <table id="dtBasicExample" class="table table-striped">
+            <thead class="encabezado">
+              <tr style="height: 50px; align-content: center; vertical-align: middle;">
+                <th style="width: 50px;"></th>
+                <th style="width: 250px;">Producto</th>
+                <th style="width: 80px;">Cant.</th>
+                <th style="width: 30px;">P.U</th>
+                <th style="width: 30px;">Total</th>
+                <th style="text-align: center;width: 30px;">Acciones</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+
+              <tr th:each="detalle : ${detalles}" style="vertical-align: middle;">
+                <div class="m-b-25" style="text-align: center; margin-top: 50px;"
+                th:if="${detalle.imagen != '' && detalle.imagen != null}">
+                <td><img th:src="@{'/recursos/'+${detalle.imagen}}" th:alt="${detalle.imagen}"
+                    style="color: #000; margin-bottom: 10px;width: 50px;height: 50px;">
+                </td>
+              </div>
+              <div class="m-b-25" style="text-align: center; margin-top: 50px;"
+                th:if="${detalle.imagen == '' or detalle.imagen == null}">
+                <td><img src="https://cdn-icons-png.flaticon.com/512/821/821528.png" alt="" style="width: 50px;">
+                </td>
+              </div>
+                <td th:text="${detalle.producto_detalle}"></td>
+                <td style="align-items: center;" th:text="${detalle.cantProduct_detalle}">
+                </td>
+                <td th:text="${detalle.precioUni_detalle}"></td>
+                <td th:text="${detalle.precioTotal_detalle}"></td>
+
+                <td style="text-align: center;">
+                  <a th:href="@{/detalles/elim_detalle/(id_dcomp=${detalle.id_dcomp})}" onclick="modal(this,'eliminar')"><i
+                      class="bi bi-eraser"></i></a>
+                </td>
+              </tr>
+            
+
+            </tbody>
+          </table>
+
+
+        </div>
+        <div class="back-to-shop"><a th:href="@{/comprobantes/select_product}"><i class="bi bi-arrow-left-circle"></i><span
+              class="text-muted" style="margin-left: 20px;">Back to shop</span></a></div>
+        <section class="layout" style="margin-top: 20px;">
+          <div></div>
+          <div><a th:href="@{/comprobantes/new_compro}" type="button" class="button btn btn-outline-success"
+              style="font-size: 15px;">Registrar Productos en Comprobante</a></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer th:replace="plantilla :: footer"></footer>
+
+  <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+
+</html>

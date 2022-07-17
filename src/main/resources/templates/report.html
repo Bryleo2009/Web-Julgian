@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="plantilla :: head">
+    </head>
+
+    <body id="body-pd">
+        <header th:replace="plantilla :: header"></header>
+        <main class="height-100 bg-light">
+            <div class="container" style="min-width: 1000px;">
+                <!-- Mostrar gráfico -->
+                <div align="center">
+                    <h2 class="mb-5">Gráficos de reportes</h2>
+                    <div id="chart_div"></div>               
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                    <div id="chart_div3"></div>
+                </div>
+
+                <!-- Dibujar el gráfico -->
+                <script th:inline="javascript">
+                    var real_data = /*[[${chartData}]]*/'noValue';
+                    google.charts.load('current', {'packages': ['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    google.charts.setOnLoadCallback(drawPieChart);
+                    google.charts.setOnLoadCallback(drawChart3);
+
+                    var real_data = /*[[${chartData}]]*/'noValue';
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([]);
+                        data.addColumn('string', 'Días');
+                        data.addColumn('number', 'Monto de venta mayor');
+                        Object.keys(real_data).forEach(function (key) {
+                            data.addRow([key, real_data[key]]);
+                        });
+                        var options = {
+                            title: 'Gráfico de mayores ventas por día',
+                            hAxis: {
+                                title: 'Días'
+                            },
+                            vAxis: {
+                                title: 'Monto de venta mayor'
+                            }
+                        };
+
+                        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+
+
+                    var real_data2 = /*[[${chartData2}]]*/'noValue';
+                    function drawPieChart() {
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Trabajador');
+                        data.addColumn('number', 'Cantidad');
+                        Object.keys(real_data2).forEach(function (key) {
+                            data.addRow([key, real_data2[key]]);
+                        });
+                        var options = {
+                            title: 'Cantidad de Ventas por Trabajador'
+                        };
+                        var chart = new google.visualization.PieChart(document
+                                .getElementById('piechart'));
+                        chart.draw(data, options);
+                    }
+
+                    var real_data3 = /*[[${chartData3}]]*/'noValue';
+                    function drawChart3() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Año', 'Monto de venta mayor '],
+                            ['2022', 24200],
+                            ['2023', 26550],
+                            ['2024', 28000],
+                            ['2025', 31500]
+                        ]);
+
+                        var options = {
+                            title: 'Gráfico de mayores ventas del año',
+                            hAxis: {
+                                title: 'Años'
+                            },
+                            vAxis: {
+                                title: 'Monto de venta mayor'
+                            }
+                        };
+
+
+                        var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+                        chart.draw(data, options);
+                    }
+                </script>
+            </div>
+
+        </main>
+        <footer th:replace="plantilla :: footer"></footer>
+        <script src="../../js/dash.js"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla :: head">
+    <!-- Visual -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/style_Formulario.css">
+</head>
+<!-- Spring -->
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container">
+            <div class="titulo">Registro de trabajador</div>
+            <form action="/trabajadores/regis_traba" method="post" id="formTraba" enctype="multipart/form-data">
+                <div class="datos-producto">
+                    <div class="input-box">
+                        <span class="detalles">DNI:</span>
+                        <input type="text" id="dni_traba" name="dni_traba" autofocus placeholder="Dni" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Teléfono:</span>
+                        <input type="number" id="telef_traba" name="telef_traba" min="0" max="1000000000"
+                            onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="Tel.">
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Nombre:</span>
+                        <input type="text" id="nombre_traba" name="nombre_traba" placeholder="Nombre" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Apellido:</span>
+                        <input type="text" id="apellido_traba" name="apellido_traba" placeholder="Apellido" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Dirección:</span>
+                        <input type="text" id="direccion_traba" name="direccion_traba" placeholder="Ubi.">
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Fecha de nacimiento:</span>
+                        <input type="date" id="fecnac_traba" name="fecnac_traba" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Imagen:</span>
+                        <!-- <input class="inputfile inputfile-1" type="file" accept="image/png,image/jpeg,image/jfif" id="imagen" name="file"> -->
+                        <input type="file" name="file" id="file-1" accept="image/png,image/jpeg,image/jfif"
+                            class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"
+                            multiple />
+                        <label for="file-1" style="min-width: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17"
+                                viewBox="0 0 20 17">
+                                <path
+                                    d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z">
+                                </path>
+                            </svg>
+                            <span class="iborrainputfile">Seleccionar archivo</span>
+                        </label>
+
+                        <script>'use strict';
+
+                            ; (function (document, window, index) {
+                                var inputs = document.querySelectorAll('.inputfile');
+                                Array.prototype.forEach.call(inputs, function (input) {
+                                    var label = input.nextElementSibling,
+                                        labelVal = label.innerHTML;
+
+                                    input.addEventListener('change', function (e) {
+                                        var fileName = '';
+                                        if (this.files && this.files.length > 1)
+                                            fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                                        else
+                                            fileName = e.target.value.split('\\').pop();
+
+                                        if (fileName)
+                                            label.querySelector('span').innerHTML = fileName;
+                                        else
+                                            label.innerHTML = labelVal;
+                                    });
+                                });
+                            }(document, window, 0));</script>
+                    </div>
+                </div>
+
+                <section class="layout" style="margin-top: 450px;">
+                    <div class="b1"><button id="btn" class="button btn-success" disabled
+                            onclick="modal(this,'guardar','formTraba')" type="submit"
+                            value="Registrar">Registrar</button></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/trabajadores';"
+                            type="button" value="Cancelar">
+                    </div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("dni_traba").value.length;
+            //t2 = document.getElementById("telef_traba").value;
+            t3 = document.getElementById("nombre_traba").value.length;
+            t4 = document.getElementById("apellido_traba").value.length;
+            //t5 = document.getElementById("direccion_traba").value.length;
+            t6 = document.getElementById("fecnac_traba").value;
+            if (t1 >= 8 && /*t2 != "" &&*/ t3 >= 3 && t4 >= 3 && /*t5 != "" &&*/ t6 != "") {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("dni_traba").addEventListener("keyup", habilitar);
+        //document.getElementById("telef_traba").addEventListener("keyup", habilitar);
+        document.getElementById("nombre_traba").addEventListener("keyup", habilitar);
+        document.getElementById("apellido_traba").addEventListener("keyup", habilitar);
+        //document.getElementById("direccion_traba").addEventListener("keyup", habilitar);
+        document.getElementById("fecnac_traba").addEventListener("change", habilitar);
+
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+
+</html>

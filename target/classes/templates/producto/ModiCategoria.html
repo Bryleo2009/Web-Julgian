@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head">
+  <meta charset="UTF-8" />
+</head>
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+
+<body id="body-pd">
+  <header th:replace="plantilla :: header"></header>
+  <main class="height-100 bg-light">
+    <div class="container">
+      <div class="titulo">Modificación de categoria</div>
+      <form action="/categorias/actualizar_categ" method="post" id="modicateg">
+        <div class="datos-producto">
+
+          <div class="input-box">
+
+            <span class="detalles">ID:</span>
+            <input type="text" id="id_categ" name="id_categ" th:value="${categoria.id_categ}" readonly placeholder="Identificación" required>
+          </div>
+          <div class="input-box">
+
+            <span class="detalles">Nombre:</span>
+            <input type="text" id="nombre_categ" maxlength="20" name="nombre_categ" th:value="${categoria.nombre_categ}" minlength="3" placeholder="Nombre" required>
+          </div>
+        </div>
+        <section class="layout" style="margin-top: 20px;">
+          <div class="b1"><button class="button btn-success" id="btn" onclick="modal(this,'modificar','modicateg')" type="submit" value="Modificar">Modificar</button></div>
+          <div class="b2"><input class="button btn-success" onclick="location.href='/categorias';" type="button" value="Cancelar"></div>
+        </section>
+      </form>
+    </div>
+  </main>
+  <footer th:replace="plantilla :: footer"></footer>
+  <script>
+    function habilitar() {
+        t1 = document.getElementById("nombre_categ").value.length;
+        if (t1 >= 3) {
+            document.getElementById("btn").disabled = false;
+        } else {
+            document.getElementById("btn").disabled = true;
+        }
+    }
+    document.getElementById("nombre_categ").addEventListener("keyup", habilitar);
+</script>
+  <script src="../../js/dash.js"></script>
+</body>
+
+</html>

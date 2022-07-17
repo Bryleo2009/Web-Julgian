@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+
+<link rel="stylesheet" href="../../css/style_Listar.css">
+
+
+<body id="body-pd" >
+  <header th:replace="plantilla :: header"></header>
+
+  <main class="height-100 bg-light">
+
+
+    <div class="container" style="height: auto;">
+      <h2 class="mb-5">Lista Productos</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+
+            
+            <th></th>
+            <th style="width: 350px;">Descripcion</th>
+            <th style="width: 200px;">Categoria</th>
+            <th>Talla</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th sec:authorize="hasRole('ROLE_GERENTE')" style="text-align: center;">Acciones</th>
+            
+
+          </tr>
+        </thead>
+        <tbody>
+
+          
+          <tr th:each="producto : ${productos}" th:if="${producto.descripcion_product != 'NULL'}" style="vertical-align: middle;">
+            
+            <div class="m-b-25" style="text-align: center; margin-top: 50px;" th:if="${producto.imagen != '' && producto.imagen != null}">
+              <td><img th:src="@{'/recursos/'+${producto.imagen}}" th:alt="${producto.imagen}" 
+              style="color: #000; margin-bottom: 10px;width: 100px;height: 100px;">
+            </td>
+          </div>
+          <div class="m-b-25" style="text-align: center; margin-top: 50px;"th:if="${producto.imagen == '' or producto.imagen == null}">
+            <td><img src="https://cdn-icons-png.flaticon.com/512/821/821528.png" alt="" style="width: 100px;">
+            </td>
+          </div>
+            <td th:text="${producto.descripcion_product}"></td>
+            <td th:text="${producto.id_categ.nombre_categ}"></td>
+            <td th:text="${producto.talla_product}"></td>
+            <td>$ <label th:text="${producto.precio_uni}"></label></td>
+            <td th:text="${producto.stock_product}"></td>
+            
+            <td style="text-align: center;" sec:authorize="hasRole('ROLE_GERENTE')">
+              <a th:href="@{/productos/edit_product/(id_product=${producto.id_product})}"><i class="bi bi-pencil"></i></a>
+              <a  th:href="@{/productos/eliminar_product/(id_product=${producto.id_product})}" onclick="modal(this,'eliminar')"><i class="bi bi-trash3-fill"></i></a>
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+      <section class="layout">
+        <div></div>
+        <div><a sec:authorize="hasRole('ROLE_GERENTE')" th:href="@{/productos/new_product}" type="button" class="button btn btn-outline-success">Agregar Producto</a></div>
+      </section>
+    </div>
+
+
+  </main>
+  <footer th:replace="plantilla :: footer"></footer>
+
+  <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+
+</html>

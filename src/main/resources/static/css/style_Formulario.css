@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/*Tamaño de contenedores*/
+#formproduct{
+    height: 400px;
+}
+#modiproduct{
+    height: 550px;
+}
+#modirol{
+    height: 200px;
+}
+/*propiedades de titulos*/
+.container .titulo{
+    font-size: 35px;
+    font-weight: 500;
+    position: relative;
+    display: block; 
+    opacity: 0;
+    animation: revealText 1s forwards;
+}
+.container .titulo::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: #262F38;
+}
+
+@keyframes revealText {
+    from{
+        transform: translateY(20px); /*Moves the element down by 20px.*/
+    }
+    to{
+        opacity: 1; /*Turn the opacity back on so that we can see the element in it's final animation state.*/
+        transform: none; /*Removes the 20px so that the text will be at the normal starting position at the end of the animation.*/
+    }
+}
+/*Propiedades de botones*/
+.layout {
+    max-width: 700px;
+    height: 60px;  
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, auto);
+    gap: 24px;
+    align-items: center;
+    align-content: center;
+  }
+.b1{
+    width: 288px;
+}
+.b2{
+    width: 288px;
+}
+.button{
+    display: initial;
+    color: #fff;
+    text-decoration: none;
+    background: #262F38;
+    padding: 10px 100px;
+    width: 288px;    
+    border: 3px solid 
+    #01D28E;
+    border-radius: 10px;    
+    outline: none;    
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.button:hover{
+    animation: pulsate 2s 
+    ease-in-out; 
+    background: #01D28E;
+    color: #1E242A;
+}
+.button:disabled,
+.button.disabled{
+    background: #717272;
+}
+
+select{
+    height: 45px;
+	appearance:none;
+	outline: 0;
+	border: 1;
+	border-color: #c6c6c6;
+	border-radius: 5px;
+	background: none;
+    flex: 1;
+    padding: 0 3.7em;
+    color: #262F38;
+    cursor: pointer;
+    font-size: 14px; /*Cambiar a una medida reconocida "px" recomdado 15px para que se adapte"*/ /*Cambio*/
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/******************************FORMULARIOS*******************************/
+/*Seccion de recoleccion de datos*/
+.container form .datos-producto{
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 65px;
+    margin: 65px 0;
+    font-size: 20px;
+    display: flex; 
+    opacity: 0;
+    animation: revealText 1.5s forwards;
+ 
+}
+form .datos-producto .input-box{
+    margin-bottom: 15px;
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+.datos-producto .input-box .detalles{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.datos-producto .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.datos-producto .input-box input:focus,
+.datos-producto .input-box input:valid{
+    border-color: #262F38;
+}
+@keyframes pulsate {
+   
+    0%{
+        box-shadow: 
+        0 0 15px #262F38,
+        0 0 25px #01D28E;
+        
+    }
+}
+.input-group {
+    position: relative;
+}
+.input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font: inherit;
+    color: #262F38;
+    background-color: transparent;
+    outline: 2px solid #fff;
+}
+
+.input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(10px, 10px);
+    transform-origin: left;
+    transition: transform .25s;
+}
+.input:focus~.input-label,
+.input:valid~.input-label {
+    transform: translate(0, -30px) scale(1);
+    color: #262F38;
+    font-weight: bold;
+}
+.input:is(:focus, :valid) {
+    outline-color: #262F38;
+}
+/*Propiedades de checkbox      rgb(211, 210, 210)*/
+input[type=checkbox].toggle{
+    display: none;    
+}
+input[type=checkbox].toggle + label{
+    display: inline-block;
+    height: 40px;
+    width: 200px;
+    position: relative;
+    font-size: 20px;
+    border: 1px solid rgb(211, 210, 210);
+    border-radius: 15px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+input[type=checkbox].toggle + label:before{
+    position: absolute;
+    top: 4px;
+    height: 30px;
+    width: 30px;
+    content: '';
+    transition: all 0.3s ease;
+    z-index: 3;
+    border-radius: 50%;
+}
+input[type=checkbox].toggle + label:after{
+    width: 140px;
+    text-align: center;
+    z-index: 2;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+input[type=checkbox].toggle:not(:checked) + label {
+    background-color: transparent;
+    text-align: right;
+}
+input[type=checkbox].toggle:not(:checked) + label:after {
+    content: attr(data-unchecked);
+    right: 0;
+    left: auto;
+    opacity: 1;
+    color: rgba(146, 26, 26, 0.384);
+}
+input[type=checkbox].toggle:not(:checked) + label:before {
+    left: 4px;
+    background-color: rgb(146, 26, 26);
+}
+input[type=checkbox].toggle:checked + label{
+    text-align: left;
+    border-color: rgb(211, 210, 210);
+}
+input[type=checkbox].toggle:checked + label:after{
+    content: attr(data-checked);
+    left: 4px;
+    right: auto;
+    opacity: 1;
+    color: rgba(45, 172, 66, 0.611);
+}
+input[type=checkbox].toggle:checked + label:before {
+    left: 160px;
+    background-color: rgb(45, 172, 66);
+}
+
+/**********File Inputs**********/
+.container-input {
+    text-align: center;
+    background: #282828;
+    border-top: 5px solid #c39f77;
+    padding: 50px 0;
+    border-radius: 6px;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+/* style 1 */
+
+.inputfile-1 + label {
+    color: #fff;
+    background-color: #262F38;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #01D28E;
+}
+
+/*responsive*/
+@media screen and (min-width: 1839px) {
+   
+    #formcateg{
+        height: 380px;
+    }
+    #modicateg{
+        height: 380px;
+    }
+    #formuser{
+        height: 380px;
+    }
+    #formTraba{
+        height: 550px;
+    }
+    #modiproduct{
+        height: 550px;
+    }
+    #moditraba{
+        height: 550px;
+    }
+  }

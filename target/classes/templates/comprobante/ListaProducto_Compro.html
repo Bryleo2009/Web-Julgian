@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+
+<link rel="stylesheet" href="../../css/style_Listar.css">
+
+
+<body id="body-pd">
+  <header th:replace="plantilla :: header"></header>
+
+  <main class="height-100 bg-light">
+
+
+    <div class="container">
+      <h2 class="mb-5">Seleccione Productos</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+
+            <th></th>
+            <th style="width: 350px;">Descripcion</th>
+            <th style="width: 130px;">Categoria</th>
+            <th>Talla</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Cant.</th>
+            <th style="text-align: center;">Acciones</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="producto : ${productos}" style="vertical-align: middle;"
+            th:if="${producto.descripcion_product != 'NULL'}">
+            <form action="/detalles/agregar" method="post">
+              <div class="m-b-25" style="text-align: center; margin-top: 50px;"
+                th:if="${producto.imagen != '' && producto.imagen != null}">
+                <td><img th:src="@{'/recursos/'+${producto.imagen}}" th:alt="${producto.imagen}"
+                    style="color: #000; margin-bottom: 10px;width: 100px;height: 100px;">
+                </td>
+              </div>
+              <div class="m-b-25" style="text-align: center; margin-top: 50px;"
+                th:if="${producto.imagen == '' or producto.imagen == null}">
+                <td><img src="https://cdn-icons-png.flaticon.com/512/821/821528.png" alt="" style="width: 100px;">
+                </td>
+              </div>
+
+              <td name="desc_product"> 
+                <input th:value="${producto.imagen}" name="imagen" hidden>
+                <input th:value="${producto.id_product}" name="id_product" hidden>
+                <input
+                  th:value="${producto.descripcion_product}" name="desc_product"
+                  style="width: 100%;background: none; border: none;" readonly></td>
+              <td th:text="${producto.id_categ.nombre_categ}"></td>
+              <td><input th:value="${producto.talla_product}" readonly name="talla_product"
+                  style="width: 80px; background: none; border: none;"></td>
+              <td>$ <input th:value="${producto.precio_uni}"readonly name="precio_unit"
+                  style="width: 80px; background: none; border: none;"></td>
+              <td th:text="${producto.stock_product}" ></td>
+              <td style="align-items: center;">
+                <input type="number" name="cantidad" th:max="${producto.stock_product}" th:value="0" min="0"
+                  style="background-color: rgba(221, 238, 255, 0); border: none;text-align: center;width: 50%;border-bottom: solid;"
+                  onkeyup="if(this.value<0){this.value= this.value * -1}">
+              </td>
+              <td style="text-align: center;">
+                <button type="submit" style="background-color: rgba(221, 238, 255, 0);border: none"><i
+                    class="bi bi-cursor-fill"></i></button>
+              </td>
+            </form>
+          </tr>
+
+
+        </tbody>
+      </table>
+
+      <section class="layout">
+        <div><a th:href="@{/detalles}" type="button" class="button btn btn-outline-success"><i class="bi bi-cart2"></i>
+            Enviar al carrito de compras</a></div>
+        <div><a th:href="@{/detalles/cancelar}" type="button" class="button btn btn-outline-success">Cancelar</a></div>
+      </section>
+    </div>
+
+
+  </main>
+  <footer th:replace="plantilla :: footer"></footer>
+
+  <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+
+</html>

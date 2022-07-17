@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head">
+    <!-- Visual -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/style_Formulario.css">
+</head>
+<!-- Spring -->
+
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container">
+            <div class="titulo">Modificación de usuario</div>
+            <form action="/usuarios/actualizar_user" method="post" id="modiproduct">
+                <div class="datos-producto">
+                    <div class="input-box">
+                        <span class="detalles">ID:</span>
+                        <input type="text" id="id_user" name="id_user" th:value="${usuario.id_user}"
+                            placeholder="Identificación" readonly required>
+                    </div>
+                    <div class="input-box" th:if="${nick.user.id_user != usuario.id_user}">
+                        <!--th:if="${usuario.estado_user == true}"-->
+                        <span class="detalles">Estado:</span>
+                        <div th:if="${usuario.estado_user == true}">
+                            <div class="form-check form-check-inline">
+                                <!--flexRadio?-->
+                                <input type="radio" name="estado_user" id="flexRadioDefault1"
+                                    style="width: 20px; vertical-align: middle;" value="1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Activo
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="" type="radio" name="estado_user" id="flexRadioDefault2"
+                                    style="width: 20px; vertical-align: middle;" value="0">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Inactivo
+                                </label>
+                            </div>
+                        </div>
+                        <div th:if="${usuario.estado_user != true}">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="estado_user" id="flexRadioDefault1"
+                                    style="width: 20px; vertical-align: middle;" value="1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Activo
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="" type="radio" name="estado_user" id="flexRadioDefault2" checked
+                                    style="width: 20px; vertical-align: middle;" value="0">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Inactivo
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- <span class="detalles">Estado:</span>
+                            <div class="form-check form-check-inline" th:each="estado : ${estados}">
+                                <input type="radio" name="estado_user" id="flexRadioDefault1"
+                                    style="width: 20px; vertical-align: middle;">
+                                <label class="form-check-label" for="flexRadioDefault1" th:text="${estado.estado}">
+                                </label>
+                            </div>-->
+                        <!-- <input class="form-check-input" name="estado_user" type="checkbox" data-toggle="toggle"
+                            id="flexSwitchCheckChecked" th:checked="${usuario.estado_user}"
+                            th:attrappend="checked=${item.value ?'true':'false'}"> -->
+                        <!-- <input type="checkbox" name="estado_user" data-toggle="toggle" class="toggle" id="checkpro" th:checked="${usuario.estado_user}">                    -->
+                        <!-- <label for="checkpro" data-checked="Activo" data-unchecked="Inactivo"></label> -->
+                    </div>
+                    <!-- <div class="input-box" th:if="${usuario.estado_user != true}">
+                        <span class="detalles">Estado:</span>
+                        <input type="checkbox" name="estado_user" class="toggle" id="checkpro" required th:checked="${usuario.estado_user}" th:value="1">                     
+                        <label for="checkpro" data-checked="Activo" data-unchecked="Inactivo"></label>
+                    </div> -->
+                    <div class="input-box">
+                        <span class="detalles">Username:</span>
+                        <input type="text" id="username" name="username" th:value="${usuario.username}"
+                            placeholder="Username" required>
+                    </div>
+                    <div class="input-box" hidden>
+                        <span class="detalles">Password:</span>
+                        <input type="text" id="password" name="password" th:value="${usuario.password}"
+                            placeholder="Password" required>
+                    </div>
+                    <div class="input-box">
+                        <div class="select">
+                            <span class="detalles">Rol:</span>
+                            <select name="id_rol" id="formato" style="width: 280px; padding: 0 5px;" required>
+                                <option value="" selected disabled>Escoge un rol</option>
+                                <option class="fst-italic" th:each="rol : ${roles}" th:value="${rol.id_rol}"
+                                    th:text="${rol.nombre_rol}" th:selected="${rol.id_rol == usuario.id_rol.id_rol}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="detalles">Trabajador:</span>
+                        <input type="text" name="id_traba" th:value="${usuario.dni_traba.dni_traba}"
+                            placeholder="Trabajador" required readonly hidden>
+                        <input type="text"
+                            th:value="${usuario.dni_traba.nombre_traba + ' ' + usuario.dni_traba.apellido_traba}"
+                            placeholder="Trabajador" required readonly>
+                    </div>
+                </div>
+                <section class="layout" style="margin-top: 300px;">
+                    <div class="b1"><button id="btn" class="button btn-success" type="submit"
+                            onclick="modal(this,'modificar','modiproduct')" value="Modificar">Modificar</button></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/usuarios';" type="button"
+                            value="Cancelar"></div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("username").value.length;
+            t2 = document.getElementById("password").value.length;
+            t3 = document.getElementById("formato").value;
+            if (t1 >= 3 && t2 >= 5 && t3 != "") {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("username").addEventListener("keyup", habilitar);
+        document.getElementById("password").addEventListener("keyup", habilitar);
+        document.getElementById("formato").addEventListener("change", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+
+</html>

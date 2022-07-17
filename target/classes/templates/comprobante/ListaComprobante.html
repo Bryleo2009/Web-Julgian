@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+    
+</head>
+
+ <link rel="stylesheet" href="../../css/style_Listar.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">     
+        <div class="container">
+      <h2 class="mb-5">Lista de Comprobantes</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+            <th>#Serie</th>
+            <th>Fecha Emision</th>
+            <th>Identificacion</th>
+            <th style="width: 300px;">Cliente</th>            
+            <th>S.T</th>
+            <th>Total</th>   
+            <th style="text-align: center;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="comprobante : ${comprobantes}" th:if="${comprobante.id_comp != 'N00000'}">
+            <td th:text="${comprobante.id_comp}"></td> 
+            <td th:text="${comprobante.fechaEmi_comp}"></td>
+            <td th:text="${comprobante.identClient_comp}"></td>
+            <td th:text="${comprobante.nomClient_comp}"></td>
+            <td th:text="${comprobante.montoSubtotal_comp}"></td>
+            <td th:text="${comprobante.montoTotal_comp}"></td>
+            
+            <td style="text-align: center;">
+              <!--<a th:href="@{/comprobantes/edit_compro/(id_comp=${comprobante.id_comp})}" sec:authorize="hasRole('ROLE_GERENTE')"><i class="bi bi-pencil"></i></a>-->
+              <!-- <a th:href="@{/comprobantes/eliminar_compro/(id_comp=${comprobante.id_comp})}" sec:authorize="hasRole('ROLE_GERENTE')" onclick="modal(this,'eliminar')"><i class="bi bi-trash3-fill"></i></a>    -->
+              <a th:href="@{/comprobantes/detalle_compro/(id_comp=${comprobante.id_comp})}"><i class="bi bi-search"></i></a>
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+      <section class="layout">
+        <div></div>
+        <div><a th:href="@{/comprobantes/select_product}" type="button" class="button btn btn-outline-success">Agregar Comprobante</a></div>
+      </section>
+    </div>
+
+
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    
+    <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+</html>

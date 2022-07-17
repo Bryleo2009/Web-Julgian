@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+</head>
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div div class="container" style="min-width: 1000px;">
+
+            <div align="center">
+                <h2 class="mb-5 text-uppercase">Búsqueda de trabajadores</h2>
+                <div class="row">
+                    <form id="busqueda" action="/busqueda/trabajadores" method="post">
+                        <div class="row">
+                            <div class="col-8">
+                                <input class="form-control" type="text" th:value="${inputNom}" name="nombre" placeholder="Nombre">
+                            </div><!--
+                            <div class="col-3">
+                                <select class="form-select" name="categoria">
+                                    <option selected value="">Categoria</option>
+                                    <option th:each="cat : ${categorias}" th:selected="${#strings.equals(cat.nombre_categ,inputCat)}"
+                                            th:value="${cat.nombre_categ}" th:text="${cat.nombre_categ}"
+                                            th:if="${cat.nombre_categ != 'NULL'}"></option>
+                                </select>
+                            </div>-->
+                            <div class="col-2">
+                                <input class="btn btn-primary w-100" type="submit" value="Buscar">
+                            </div>
+                            <div class="col-2"> 
+                                <button class="btn btn-secondary w-100" id="limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>DNI</td>
+                                <td>Nombres</td>
+                                <td>Apellidos</td>
+                                <td>Celular</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="trab : ${trabajadores}" th:if="${trab.nombre_traba != 'NULL'}">
+                                <td th:text="${trab.dni_traba}"></td>
+                                <td th:text="${trab.nombre_traba}"></td>
+                                <td th:text="${trab.apellido_traba}"></td>
+                                <td th:text="${trab.telefono_traba}"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <style>
+            .bg-light > .container {
+                height: calc(100vh - 100px);    
+            }
+        </style>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+    <script>
+        $("#limpiar").click(function() {
+            $("input[type=text][name=nombre]").val("");
+            //$("select[name=categoria]").val("");
+            $("#busqueda").submit();
+        });
+    </script>
+</body>
+</html>

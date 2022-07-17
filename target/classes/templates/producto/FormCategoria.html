@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+<!--css/style_ModificarPro.css-->
+<!-- ../../static/css/style_ModificarPro.css -->
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+
+        <div class="container" >
+
+            <div class="titulo">Categoría</div>
+
+            <form action="/categorias/regis_categ" method="POST" id="formcateg">
+                <div class="datos-producto">
+
+
+
+                    <div class="input-box">
+                        <div class="input-group">
+
+                            <input type="text" maxlength="20" class="input" id="nombre_categ" autofocus name="nombre_categ" required>
+
+
+                            <label for="name" class="input-label">Nombre</label>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <section class="layout">
+                    <div class="b1"><button class="button btn-success" id="btn" type="submit" onclick="modal(this,'guardar','formcateg')" disabled value="Crear">Crear</button></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/categorias';" type="button" value="Cancelar"></div>
+                </section>
+
+
+            </form>
+
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("nombre_categ").value.length;
+            if (t1 >= 3) {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("nombre_categ").addEventListener("keyup", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+
+</html>

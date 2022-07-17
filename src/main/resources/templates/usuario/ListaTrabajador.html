@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla :: head">
+   
+    
+</head>
+ <link rel="stylesheet" href="../../css/style_Listar.css">
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    
+    <main class="height-100 bg-light">
+        
+        
+        <div class="container">
+      <h2 class="mb-5">Lista de Trabajadores</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+
+            <th style="width: 150px;">DNI</th>
+            <th style="width: 350px;">Nombre</th>
+            <th style="width: 350px;">Apellido</th>
+
+            <th style="text-align: center;">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="trabajador : ${trabajadores}" th:if="${trabajador.nombre_traba != 'NULL'}">
+            <td th:text="${trabajador.dni_traba}"></td>
+            <td th:text="${trabajador.nombre_traba}"></td>
+            <td th:text="${trabajador.apellido_traba}"></td>
+            
+            <td style="text-align: center;">
+              <a th:href="@{/trabajadores/edit_traba/(dni_traba=${trabajador.dni_traba})}"><i class="bi bi-pencil"></i></a>
+              <a th:if="${nick.user.dni_traba.dni_traba != trabajador.dni_traba}" th:href="@{/trabajadores/eliminar_traba/(dni_traba=${trabajador.dni_traba})}" onclick="modal(this,'eliminar')" ><i class="bi bi-trash3-fill"></i></a>
+              <a th:href="@{/trabajadores/detalle_traba/(dni_traba=${trabajador.dni_traba})}"><i class="bi bi-search"></i></a>
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+      <section class="layout">
+        <div></div>
+        <div><a th:href="@{/trabajadores/new_traba}" type="button" class="button btn btn-outline-success">Agregar Trabajador</a></div>
+      </section>
+    </div>
+
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    
+    <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+</html>

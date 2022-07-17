@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+</head>
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div div class="container" style="min-width: 1000px;">
+
+            <div align="center">
+                <h2 class="mb-5 text-uppercase">Búsqueda de productos</h2>
+                <div class="row">
+                    <form id="busqueda" action="/busqueda/productos" method="post">
+                        <div class="row">
+                            <div class="col-5">
+                                <input class="form-control" type="text" name="nombre" th:value="${inputNom}" placeholder="Producto">
+                            </div>
+                            <div class="col-3">
+                                <select class="form-select" name="categoria">
+                                    <option selected value="">Categoria</option>
+                                    <option th:each="cat : ${categorias}" th:selected="${#strings.equals(cat.nombre_categ,inputCat)}"
+                                            th:value="${cat.nombre_categ}" th:text="${cat.nombre_categ}"
+                                            th:if="${cat.nombre_categ != 'NULL'}"></option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <input class="btn btn-primary w-100" type="submit" value="Buscar">
+                            </div>
+                            <div class="col-2"> 
+                                <button class="btn btn-secondary w-100" id="limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>Descripción</td>
+                                <td>Categoría</td>
+                                <td>Talla</td>
+                                <td>Precio</td>
+                                <td>Stock</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="prod : ${productos}">
+                                <td>
+                                    <img th:if="${prod.imagen != '' && prod.imagen != null}" th:src="@{'/recursos/'+${prod.imagen}}" th:alt="${prod.imagen}" style="width: 100px; height: 100px;">
+                                    <img th:if="${prod.imagen == '' or prod.imagen == null}" src="https://cdn-icons-png.flaticon.com/512/821/821528.png" alt="" style="width: 100px;">
+                                </td>
+                                <td th:text="${prod.descripcion_product}"></td>
+                                <td th:text="${prod.id_categ.nombre_categ}"></td>
+                                <td th:text="${prod.talla_product}"></td>
+                                <td>$ <span th:text="${prod.precio_uni}"></span></td>
+                                <td th:text="${prod.stock_product}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <style>
+            .bg-light > .container {
+                height: calc(100vh - 100px);    
+            }
+        </style>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+    <script>
+        $("#limpiar").click(function() {
+            $("input[type=text][name=nombre]").val("");
+            $("select[name=categoria]").val("");
+            $("#busqueda").submit();
+        });
+    </script>
+</body>
+</html>

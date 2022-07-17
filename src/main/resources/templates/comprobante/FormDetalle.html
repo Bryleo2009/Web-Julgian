@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla :: head">
+    <!-- Visual -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/style_Comprobante.css" />
+</head>
+<!-- Spring -->
+<link rel="stylesheet" href="../../css/style_Comprobante.css" />
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container" style="width: 700px; height: auto; justify-content: center">
+            <div class="seccion1">
+                <section class="layout1">
+                    <div class="espacio1">
+                        <div class="espacio11"></div>
+                    </div>
+                    <div class="espacio2">
+                        <select id="tc">
+                            <option  value="" selected disabled>TIPO COMPRO.</option>
+                            <option  th:each="tc : ${tipoCom}" th:value="${tc.id_tc}" th:text="${tc.nombre_tc}"></option>
+                        </select>
+                        <span>N. DE SERIE:</span>
+                        <input type="text" maxlength="40" id="numSeri_comp" placeholder="00000" readonly />
+                        <span style="padding-left: 121px">FECHA:</span>
+                        <input type="date" id="fechaEmi_comp" placeholder="Date" style="color: rgb(167, 164, 164)" required />
+                    </div>
+                </section>
+            </div>
+            <div class="seccion2">
+                <section class="layout2">
+                    <div class="espacio3">
+                        <input type="text" id="nomClient_comp" autofocus class="espacio3 espacio3--nom" placeholder="Nombre de cliente."
+                            maxlength="30" required />
+                        <input type="text" id="identClient_comp" class="espacio3 espacio3--id" placeholder="Identificacion." maxlength="15"
+                            required />
+                    </div>
+                    <div class="espacio4">
+                        <input type="text" placeholder="Ingrese el trabajador" th:value="${nick.user.dni_traba.nombre_traba}" maxlength="21" required />
+                        <span>METODO DE PAGO</span>
+                        <select id="tp">
+                            <option  value="" selected disabled>Tipo Pago</option>
+                            <option th:each="tp : ${tipoPago}" th:value="${tp.id_tp}" th:text="${tp.nombre_tp}" ></option>
+                        </select>
+                    </div>
+                </section>
+            </div>
+            <hr />
+            <div class="seccion3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="width: 280px">Producto</th>
+                            <th>Cant.</th>
+                            <th>P. U</th>
+                            <th>P. Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-active" th:each="detalle : ${detalles}">
+                            <td th:text="${detalle.id_dcomp}"></td>
+                            <td th:text="${detalle.producto_detalle}"></td>
+                            <td th:text="${detalle.cantProduct_detalle}"></td>
+                            <td th:text="${detalle.precioUni_detalle}"></td>
+                            <td th:text="${detalle.precioTotal_detalle}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr />
+            <div class="seccion4">
+                <div class="seccion41">
+                    <span class="seccion41 seccion41--sub">Subtotal:</span>
+                    <input type="number" th:value="${Subtotal}" id="montoSubtotal_comp" placeholder="S/" maxlength="14" min="0"
+                        onkeyup="if(this.value<0){this.value= this.value * -1}" required readonly style="text-align: right" />
+                    <span class="seccion41 seccion41--igv">IGV (18%):</span>
+                    <input type="number" th:value="${igv}" readonly style="text-align: right" />
+                    <span class="seccion41 seccion41--total">TOTAL:</span>
+                    <input type="number" th:value="${Total}" id="montoTotal_comp" readonly style="text-align: right"/>
+                </div>
+            </div>
+            <div class="seccion5">
+                <section class="layboton">
+                    <div>
+                        <button type="submit" disabled id="btn" onclick="modal(this,'guardar','formcateg')" value="Registrar"><span class="text">Registrar</span></button>
+                    </div>
+                    <div>
+                        <a type="button" onclick="location.href='/comprobantes';" value="Cancelar">
+                            <span class="text">Cancelar</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("tc").value;
+            t2 = document.getElementById("fechaEmi_comp").value;
+            t3 = document.getElementById("nomClient_comp").value.length;
+            t4 = document.getElementById("identClient_comp").value.length;
+            t5 = document.getElementById("tp").value;
+            t6 = document.getElementById("montoTotal_comp").value;
+            if ( t1 != "" && t2 != "" && t3 >= 3 && t4 >= 8 && t5 != "" && t6 >=0) {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("fechaEmi_comp").addEventListener("change", habilitar);
+        document.getElementById("tc").addEventListener("change", habilitar);
+        document.getElementById("tp").addEventListener("change", habilitar);
+        document.getElementById("nomClient_comp").addEventListener("keyup", habilitar);
+        document.getElementById("identClient_comp").addEventListener("keyup", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+
+</html>

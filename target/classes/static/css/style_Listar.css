@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.container{
+  min-width: 1250px;
+}
+
+p {
+  color: #b3b3b3;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+a {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  color: #262F38;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: #01D28E;
+}
+
+h2 {
+  text-align: center;
+  font-size: 50px;
+  color: #1e2f38;
+}
+
+.encabezado {
+  background-color: #1e242a;
+  color: #fff;
+
+}
+
+.layout {
+  width: auto;
+  height: 60px;  
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, auto);
+  gap: 24px;
+  align-items: center;
+  align-content: center;
+}
+
+.button{
+  width: 550px;
+}
+.button:hover{
+  animation: pulsate 2s 
+  ease-in-out; 
+  background: #01D28E;
+  color: #1E242A;
+}
+
+@media screen and (min-width: 1839px) {
+   
+  .container{
+    height: 800px;
+  }
+}
+
+input[type="checkbox"]:checked {
+  margin-left: 25px;
+  background-color: #1e2f38;
+}

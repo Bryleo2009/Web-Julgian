@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+
+
+
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+
+        <div class="container">
+            <div class="titulo">Modificación de producto</div>
+            
+            <div class="m-b-25" style="text-align: center; margin-top: 50px;" th:if="${producto.imagen != '' && producto.imagen != null}">
+                <img th:src="@{'/recursos/'+${producto.imagen}}" th:alt="${producto.imagen}" 
+                style="color: #000; border-radius: 5%; margin-bottom: 10px;width: 150px;">
+            </div>
+           
+            <form action="/productos/actualizar_product" method="post" id="modiproduct" enctype="multipart/form-data">
+                <div class="datos-producto" style="margin-top: 10px;">
+                    <div class="input-box">
+                        <span class="detalles">ID:</span>
+                        <input th:value="${producto.imagen}" name="antigua" hidden>
+                        <input type="text" name="id_product" th:value="${producto.id_product}" placeholder="Identificación" readonly
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Descripcion:</span>
+                        <input type="text" name="descripcion_product" maxlength="500" id="descripcion_product" th:value="${producto.descripcion_product}" placeholder="¿Que es?" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Precio:</span>
+                        <input step="any" name="precio_uni" id="precio_uni" th:value="${producto.precio_uni}" type="number" min="0"
+                            onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="$" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Stock:</span>
+                        <input type="number" name="stock_product" id="stock_product" th:value="${producto.stock_product}" min="1"
+                            onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="Cant." required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Talla:</span>
+                        <input type="text" name="talla_product" maxlength="20" id="talla_product" th:value="${producto.talla_product}" placeholder="&" required>
+                    </div>
+                    <div class="input-box">
+                        <div class="select">
+                            <span class="detalles">Categoria:</span>
+                            <select name="cate" id="formato" style="width: 280px; padding: 0 5px; font-size: 14px" required>
+                                <option value="" selected disabled>Escoge una categoria</option>
+                                <option class="fst-italic" th:each="categoria : ${categorias}"
+                                    th:value="${categoria.id_categ}" th:text="${categoria.nombre_categ}"
+                                    th:selected="${categoria.id_categ == producto.id_categ.id_categ}" th:if="${categoria.nombre_categ != 'NULL'}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Imagen:</span>
+                        <!-- <input class="inputfile inputfile-1" type="file" accept="image/png,image/jpeg,image/jfif" id="imagen" name="file"> -->
+                        <input type="file" name="file" id="file-1" accept="image/png,image/jpeg,image/jfif"
+                            class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados"
+                            multiple />
+                        <label for="file-1" style="min-width: 100%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17"
+                                viewBox="0 0 20 17">
+                                <path
+                                    d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z">
+                                </path>
+                            </svg>
+                            <span class="iborrainputfile">Seleccionar archivo</span>
+                        </label>
+
+                        <script>'use strict';
+
+                            ; (function (document, window, index) {
+                                var inputs = document.querySelectorAll('.inputfile');
+                                Array.prototype.forEach.call(inputs, function (input) {
+                                    var label = input.nextElementSibling,
+                                        labelVal = label.innerHTML;
+
+                                    input.addEventListener('change', function (e) {
+                                        var fileName = '';
+                                        if (this.files && this.files.length > 1)
+                                            fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                                        else
+                                            fileName = e.target.value.split('\\').pop();
+
+                                        if (fileName)
+                                            label.querySelector('span').innerHTML = fileName;
+                                        else
+                                            label.innerHTML = labelVal;
+                                    });
+                                });
+                            }(document, window, 0));</script>
+                    </div>
+                </div>
+                
+                <section class="layout" style="margin-top: 420px;">
+                    <div class="b1"><button class="button btn-success" id="btn" type="submit" onclick="modal(this,'modificar','modiproduct')" value="Modificar">Modificar</button></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/productos';"
+                            type="button" value="Cancelar"></div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("descripcion_product").value.length;
+            t2 = document.getElementById("precio_uni").value; 
+            t3 = document.getElementById("stock_product").value;
+            t4 = document.getElementById("talla_product").value.length;
+            if (t1 >= 3 && t2 != "" && t3 >=1 && t4 >=1) {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("descripcion_product").addEventListener("keyup", habilitar);
+        document.getElementById("precio_uni").addEventListener("keyup", habilitar);
+        document.getElementById("stock_product").addEventListener("keyup", habilitar);
+        document.getElementById("talla_product").addEventListener("keyup", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="plantilla :: head"> </head>
+
+<link rel="stylesheet" href="../../css/style_Listar.css">
+
+
+<body id="body-pd" >
+  <header th:replace="plantilla :: header"></header>
+
+  <main class="height-100 bg-light">
+
+
+    <div class="container" >
+      <h2 class="mb-5">Lista Categorias</h2>
+
+      <table id="dtBasicExample" class="table table-striped">
+        <thead class="encabezado">
+          <tr style="height: 50px; align-content: center; line-height: 32px;">
+
+            <th style="width: 7px;">#</th>
+            <th style="width: 900px;">Categoría</th>
+            <th style="text-align: center;" sec:authorize="hasRole('ROLE_GERENTE')">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr th:each="categoria : ${categorias}" th:if="${categoria.nombre_categ != 'NULL'}">
+              <td th:text="${categoria.id_categ}"></td>
+              <td th:text="${categoria.nombre_categ}"></td>
+              <td style="text-align: center;" sec:authorize="hasRole('ROLE_GERENTE')">
+                <a th:href="@{/categorias/edit_categ/(id_categ=${categoria.id_categ})}"><i class="bi bi-pencil"></i></a>
+                <a th:href="@{/categorias/eliminar_categ/(id_categ=${categoria.id_categ})}" onclick="modal(this,'eliminar')"><i class="bi bi-trash3-fill"></i></a>
+              </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+      
+      <section class="layout">
+        <div></div>
+        <div><a th:href="@{/categorias/new_categ}" sec:authorize="hasRole('ROLE_GERENTE')" type="button" class="button btn btn-outline-success">Agregar Categorias</a></div>
+      </section>
+    </div>
+
+
+  </main>
+  <footer th:replace="plantilla :: footer"></footer>
+
+  <script src="../../js/table.js"></script>
+  <script src="../../js/footable.min.js"></script>
+  <script src="../../js/footable.js"></script>
+  <script src="../../js/dash.js"></script>
+</body>
+
+</html>

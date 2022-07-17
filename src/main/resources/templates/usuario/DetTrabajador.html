@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla :: head">
+<!-- Visual -->
+<link rel="stylesheet" href="/src/main/resources/static/css/style_Formulario.css">
+</head>
+<!-- Spring -->
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container">
+            <div class="titulo">Detalle de trabajador</div>
+            <div class="m-b-25" style="text-align: center; margin-top: 50px;" th:if="${trabajador.imagen != '' && trabajador.imagen != null}">
+                <img th:src="@{'/recursos/'+${trabajador.imagen}}" th:alt="${trabajador.imagen}" 
+                style="color: #000; border-radius: 50%; margin-bottom: 10px;width: 150px;">
+            </div>
+            <div class="m-b-25" style="text-align: center; margin-top: 50px;"th:if="${trabajador.imagen == '' or trabajador.imagen == null}">
+                <lord-icon src="https://cdn.lordicon.com/vusrdugn.json" trigger="loop" delay="2000"
+                    colors="primary:#121331,secondary:#b26836,tertiary:#4bb3fd,quaternary:#f9c9c0,quinary:#ebe6ef"
+                    state="hover-wave" style="width:250px;height:250px">
+                </lord-icon>
+            </div>
+            <form action="/trabajadores/detalle_traba" method="post" id="moditraba">
+                <div class="datos-producto" style="margin-top: 10px;">
+                    <div class="input-box">
+                        <span class="detalles">DNI:</span>
+                        <input type="text" name="dni_traba" th:value="${trabajador.dni_traba}" placeholder="Dni" readonly required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Teléfono:</span>
+                        <input type="number" name="telefono_traba" th:value="${trabajador.telefono_traba}" min="0" max="1000000000"
+                            onkeyup="if(this.value<0){this.value= this.value * -1}" placeholder="Tel." readonly>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Nombre:</span>
+                        <input type="text" name="nombre_traba" th:value="${trabajador.nombre_traba}" placeholder="Nombre" required readonly>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Apellido:</span>
+                        <input type="text" name="apellido_traba" th:value="${trabajador.apellido_traba}" placeholder="Apellido" required readonly>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Dirección:</span>
+                        <input type="text" name="direccion_traba" th:value="${trabajador.direccion_traba}" placeholder="Ubi." readonly>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Fecha de nacimiento:</span>
+                        <input type="date" name="fecNac_traba" th:value="${trabajador.fechaNac_traba}" required readonly>
+                    </div>
+                </div>
+
+                <section class="layout" style="margin-top: 300px;">
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/trabajadores';"
+                    type="button" value="Atras">
+                    </div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+</body>
+</html>

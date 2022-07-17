@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla :: head">
+<!-- Visual -->
+<link rel="stylesheet" href="/src/main/resources/static/css/style_Formulario.css">
+</head>
+<!-- Spring -->
+<link rel="stylesheet" href="../../css/style_Formulario.css">
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div class="container">
+            <div class="titulo">Modificación de rol</div>
+            <form action="/roles/actu_rol" method="post" id="modirol">
+                <div class="datos-producto">
+                    <div class="input-box">
+                        <span class="detalles">ID:</span>
+                        <input type="text" id="id_rol" name="id_rol" th:value="${rol.id_rol}" placeholder="Identificación" readonly
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Nombre:</span>
+                        <input type="text" id="nombre_rol" name="nombre_rol" th:value="${rol.nombre_rol}" placeholder="Nombre" required>
+                    </div>
+                </div>
+                <section class="layout" style="margin-top: 50px;">
+                    <div class="b1"><input id="btn" class="button btn-success" type="submit" onclick="modal(this,'modificar','modirol')" value="Modificar"></div>
+                    <div class="b2"><input class="button btn-success" onclick="location.href='/roles';"
+                            type="button" value="Cancelar"></div>
+                </section>
+            </form>
+        </div>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script>
+        function habilitar() {
+            t1 = document.getElementById("nombre_rol").value.length;
+            if (t1 >= 3) {
+                document.getElementById("btn").disabled = false;
+            } else {
+                document.getElementById("btn").disabled = true;
+            }
+        }
+        document.getElementById("nombre_rol").addEventListener("keyup", habilitar);
+    </script>
+    <script src="../../js/dash.js"></script>
+</body>
+</html>

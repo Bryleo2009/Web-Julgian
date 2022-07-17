@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla :: head">
+</head>
+<body id="body-pd">
+    <header th:replace="plantilla :: header"></header>
+    <main class="height-100 bg-light">
+        <div div class="container" style="min-width: 1000px;">
+
+            <div align="center">
+                <h2 class="mb-5 text-uppercase">Búsqueda de comprobantes</h2>
+                <div class="row">
+                    <form id="busqueda" action="/busqueda/comprobantes" method="post">
+                        <div class="row">
+                            <div class="col-8">
+                                <input class="form-control" type="text" th:value="${inputCli}" name="cliente" placeholder="Cliente">
+                            </div><!--
+                            <div class="col-3">
+                                <select class="form-select" name="categoria">
+                                    <option selected value="">Categoria</option>
+                                    <option th:each="cat : ${categorias}" th:selected="${#strings.equals(cat.nombre_categ,inputCat)}"
+                                            th:value="${cat.nombre_categ}" th:text="${cat.nombre_categ}"
+                                            th:if="${cat.nombre_categ != 'NULL'}"></option>
+                                </select>
+                            </div>-->
+                            <div class="col-2">
+                                <input class="btn btn-primary w-100" type="submit" value="Buscar">
+                            </div>
+                            <div class="col-2"> 
+                                <button class="btn btn-secondary w-100" id="limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>#Serie</td>
+                                <td>Fecha Emisión</td>
+                                <td>Identificación</td>
+                                <td>Cliente</td>
+                                <td>S.T.</td>
+                                <td>Total</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="comp : ${comprobantes}" th:if="${comp.id_comp != 'N00000'}">
+                                <td th:text="${comp.id_comp}"></td> 
+                                <td th:text="${comp.fechaEmi_comp}"></td>
+                                <td th:text="${comp.identClient_comp}"></td>
+                                <td th:text="${comp.nomClient_comp}"></td>
+                                <td th:text="${comp.montoSubtotal_comp}"></td>
+                                <td th:text="${comp.montoTotal_comp}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <style>
+            .bg-light > .container {
+                height: calc(100vh - 100px);    
+            }
+        </style>
+    </main>
+    <footer th:replace="plantilla :: footer"></footer>
+    <script src="../../js/dash.js"></script>
+    <script>
+        $("#limpiar").click(function() {
+            $("input[type=text][name=cliente]").val("");
+            //$("select[name=categoria]").val("");
+            $("#busqueda").submit();
+        });
+    </script>
+</body>
+</html>

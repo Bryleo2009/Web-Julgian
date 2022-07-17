@@ -1,0 +1,22 @@
+footer{
+    color:#caced1 !important;
+ }
+
+ li{
+     margin-top: 20px ;
+     margin-bottom: 20px ;
+ }
+ 
+.Careers{ 
+    cursor: pointer;
+    color: #01D28E;
+}
+
+.row-1{
+    background-color:#1E242A !important;
+}
+
+.row-2{
+    
+    background-color: #28323C !important;
+}
