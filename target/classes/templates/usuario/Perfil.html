@@ -16,11 +16,11 @@
                 <div>
                     <div class="bg-c-lite-green user-profile">
                         <div class="card-block text-center text-white">
-                            <div class="m-b-25" th:if="${nick.user.dni_traba.imagen != '' && nick.user.dni_traba.imagen != null}">
-                                <img th:src="@{'/recursos/'+${nick.user.dni_traba.imagen}}" th:alt="${nick.user.dni_traba.imagen}" 
+                            <div class="m-b-25" th:if="${nick.usuario.dni_traba.imagen != '' && nick.usuario.dni_traba.imagen != null}">
+                                <img th:src="@{'/recursos/'+${nick.usuario.dni_traba.imagen}}" th:alt="${nick.usuario.dni_traba.imagen}"
                                 style="color: #000; border-radius: 50%; margin-bottom: 10px; width: 260px;">
                             </div>
-                            <div class="m-b-25" th:if="${nick.user.dni_traba.imagen == '' or nick.user.dni_traba.imagen == null}">
+                            <div class="m-b-25" th:if="${nick.usuario.dni_traba.imagen == '' or nick.usuario.dni_traba.imagen == null}">
                                 <lord-icon src="https://cdn.lordicon.com/vusrdugn.json" trigger="loop" delay="2000"
                                     colors="primary:#121331,secondary:#b26836,tertiary:#4bb3fd,quaternary:#f9c9c0,quinary:#ebe6ef"
                                     state="hover-wave" style="width:250px;height:250px">
@@ -28,9 +28,9 @@
                             </div>
 
 
-                            <h3 class="f-w-600" th:text="${nick.user.username}"></h3>
-                            <p th:if="${nick.user.id_rol.nombre_rol == 'ROLE_GERENTE'}" th:text="Gerente"></p>
-                            <p th:if="${nick.user.id_rol.nombre_rol != 'ROLE_GERENTE'}" th:text="Empleado"></p>
+                            <h3 class="f-w-600" th:text="${nick.usuario.username}"></h3>
+                            <p th:if="${nick.usuario.id_rol.nombre_rol == 'ROLE_GERENTE'}" th:text="Gerente"></p>
+                            <p th:if="${nick.usuario.id_rol.nombre_rol != 'ROLE_GERENTE'}" th:text="Empleado"></p>
                         </div>
                     </div>
                 </div>
@@ -40,34 +40,34 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="m-b-10 f-w-600">DNI</p>
-                                <h6 class="text-muted f-w-400" th:text="${nick.user.dni_traba.dni_traba}"></h6>
+                                <h6 class="text-muted f-w-400" th:text="${nick.usuario.dni_traba.dni_traba}"></h6>
                             </div>
                             <div class="col-sm-6">
                                 <p class="m-b-10 f-w-600">Nombres y Apellidos</p>
                                 <h6 class="text-muted f-w-400"
-                                    th:text="${nick.user.dni_traba.nombre_traba + ' ' + nick.user.dni_traba.apellido_traba}">
+                                    th:text="${nick.usuario.dni_traba.nombre_traba + ' ' + nick.usuario.dni_traba.apellido_traba}">
                                 </h6>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="m-b-10 f-w-600">Fecha de nacimiento</p>
-                                <h6 class="text-muted f-w-400" th:text="${nick.user.dni_traba.fechaNac_traba}"></h6>
+                                <h6 class="text-muted f-w-400" th:text="${nick.usuario.dni_traba.fechaNac_traba}"></h6>
                             </div>
                             <div class="col-sm-6">
                                 <p class="m-b-10 f-w-600">Telefono</p>
-                                <h6 class="text-muted f-w-400" th:if="${nick.user.dni_traba.telefono_traba == null or nick.user.dni_traba.telefono_traba == ''}"
+                                <h6 class="text-muted f-w-400" th:if="${nick.usuario.dni_traba.telefono_traba == null or nick.usuario.dni_traba.telefono_traba == ''}"
                                     th:text="----"></h6>
-                                <h6 class="text-muted f-w-400" th:if="${nick.user.dni_traba.telefono_traba != null or nick.user.dni_traba.telefono_traba != ''}"
-                                    th:text="${nick.user.dni_traba.telefono_traba}"></h6>
+                                <h6 class="text-muted f-w-400" th:if="${nick.usuario.dni_traba.telefono_traba != null or nick.usuario.dni_traba.telefono_traba != ''}"
+                                    th:text="${nick.usuario.dni_traba.telefono_traba}"></h6>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="m-b-10 f-w-600">Dirección</p>
-                                <h6 class="text-muted f-w-400" th:if="${nick.user.dni_traba.direccion_traba == null or nick.user.dni_traba.direccion_traba == ''}"
+                                <h6 class="text-muted f-w-400" th:if="${nick.usuario.dni_traba.direccion_traba == null or nick.usuario.dni_traba.direccion_traba == ''}"
                                     th:text="----"></h6>
-                                <h6 class="text-muted f-w-400" th:if="${nick.user.dni_traba.direccion_traba != null or nick.user.dni_traba.direccion_traba != ''}"
+                                <h6 class="text-muted f-w-400" th:if="${nick.usuario.dni_traba.direccion_traba != null or nick.user.dni_traba.direccion_traba != ''}"
                                     th:text="${nick.user.dni_traba.direccion_traba}"></h6>
                             </div>
                             <div class="col-sm-6">

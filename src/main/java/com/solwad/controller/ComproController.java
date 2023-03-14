@@ -122,7 +122,7 @@ public class ComproController {
 		n = nick.ListarId(1);
 		model.addAttribute("productos", productos);
 		model.addAttribute("nick", n);
-		System.out.print(n.user.dni_traba.nombre_traba);
+		System.out.print(n.usuario.dni_traba.nombre_traba);
 		return "comprobante/ListaProducto_Compro";
 	}
 

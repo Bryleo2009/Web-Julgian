@@ -33,7 +33,7 @@
   }
 } (function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
-  // The inner file should be wrapped (by `banner.start.js`) in a function that
+  // The inner file should be wrapped (by banner.start.js) in a function that
   // returns the AMD loader references.
   var S2 =(function () {
   // Restore the Select2 AMD loader so it can be used
@@ -634,7 +634,7 @@ S2.define('select2/utils',[
       params.push({});
     }
 
-    // Set the `_type` of the first object to the event
+    // Set the _type of the first object to the event
     params[0]._type = event;
 
     if (event in this.listeners) {
@@ -1424,7 +1424,7 @@ S2.define('select2/selection/base',[
     // This needs to be delayed as the active element is the body when the tab
     // key is pressed, possibly along with others.
     window.setTimeout(function () {
-      // Don't trigger `blur` if the focus is still in the selection
+      // Don't trigger blur if the focus is still in the selection
       if (
         (document.activeElement == self.$selection[0]) ||
         ($.contains(self.$selection[0], document.activeElement))
@@ -1474,7 +1474,7 @@ S2.define('select2/selection/base',[
   };
 
   BaseSelection.prototype.update = function (data) {
-    throw new Error('The `update` method must be defined in child classes.');
+    throw new Error('The update method must be defined in child classes.');
   };
 
   return BaseSelection;
@@ -1754,8 +1754,8 @@ S2.define('select2/selection/allowClear',[
     if (this.placeholder == null) {
       if (this.options.get('debug') && window.console && console.error) {
         console.error(
-          'Select2: The `allowClear` option should be used in combination ' +
-          'with the `placeholder` option.'
+          'Select2: The allowClear option should be used in combination ' +
+          'with the placeholder option.'
         );
       }
     }
@@ -1792,7 +1792,7 @@ S2.define('select2/selection/allowClear',[
         data: data[d]
       };
 
-      // Trigger the `unselect` event, so people can prevent it from being
+      // Trigger the unselect event, so people can prevent it from being
       // cleared.
       this.trigger('unselect', unselectData);
 
@@ -1930,7 +1930,7 @@ S2.define('select2/selection/search',[
       }
     });
 
-    // Try to detect the IE version should the `documentMode` property that
+    // Try to detect the IE version should the documentMode property that
     // is stored on the document. This is only implemented in IE and is
     // slightly cleaner than doing a user agent check.
     // This property is not available in Edge, but Edge also doesn't have
@@ -1938,22 +1938,22 @@ S2.define('select2/selection/search',[
     var msie = document.documentMode;
     var disableInputEvents = msie && msie <= 11;
 
-    // Workaround for browsers which do not support the `input` event
+    // Workaround for browsers which do not support the input event
     // This will prevent double-triggering of events for browsers which support
-    // both the `keyup` and `input` events.
+    // both the keyup and input events.
     this.$selection.on(
       'input.searchcheck',
       '.select2-search--inline',
       function (evt) {
-        // IE will trigger the `input` event when a placeholder is used on a
+        // IE will trigger the input event when a placeholder is used on a
         // search box. To get around this issue, we are forced to ignore all
-        // `input` events in IE and keep using `keyup`.
+        // input events in IE and keep using keyup.
         if (disableInputEvents) {
           self.$selection.off('input.search input.searchcheck');
           return;
         }
 
-        // Unbind the duplicated `keyup` event
+        // Unbind the duplicated keyup event
         self.$selection.off('keyup.search');
       }
     );
@@ -1962,9 +1962,9 @@ S2.define('select2/selection/search',[
       'keyup.search input.search',
       '.select2-search--inline',
       function (evt) {
-        // IE will trigger the `input` event when a placeholder is used on a
+        // IE will trigger the input event when a placeholder is used on a
         // search box. To get around this issue, we are forced to ignore all
-        // `input` events in IE and keep using `keyup`.
+        // input events in IE and keep using keyup.
         if (disableInputEvents && evt.type === 'input') {
           self.$selection.off('input.search input.searchcheck');
           return;
@@ -1977,7 +1977,7 @@ S2.define('select2/selection/search',[
           return;
         }
 
-        // Tabbing will be handled during the `keydown` phase
+        // Tabbing will be handled during the keydown phase
         if (key == KEYS.TAB) {
           return;
         }
@@ -3001,11 +3001,11 @@ S2.define('select2/data/base',[
   Utils.Extend(BaseAdapter, Utils.Observable);
 
   BaseAdapter.prototype.current = function (callback) {
-    throw new Error('The `current` method must be defined in child classes.');
+    throw new Error('The current method must be defined in child classes.');
   };
 
   BaseAdapter.prototype.query = function (params, callback) {
-    throw new Error('The `query` method must be defined in child classes.');
+    throw new Error('The query method must be defined in child classes.');
   };
 
   BaseAdapter.prototype.bind = function (container, $container) {
@@ -3469,11 +3469,11 @@ S2.define('select2/data/ajax',[
         var results = self.processResults(data, params);
 
         if (self.options.get('debug') && window.console && console.error) {
-          // Check to make sure that the response included a `results` key.
+          // Check to make sure that the response included a results key.
           if (!results || !results.results || !$.isArray(results.results)) {
             console.error(
               'Select2: The AJAX results did not return an array in the ' +
-              '`results` key of the response.'
+              'results key of the response.'
             );
           }
         }
@@ -3928,11 +3928,11 @@ S2.define('select2/dropdown/search',[
       self._keyUpPrevented = evt.isDefaultPrevented();
     });
 
-    // Workaround for browsers which do not support the `input` event
+    // Workaround for browsers which do not support the input event
     // This will prevent double-triggering of events for browsers which support
-    // both the `keyup` and `input` events.
+    // both the keyup and input events.
     this.$search.on('input', function (evt) {
-      // Unbind the duplicated `keyup` event
+      // Unbind the duplicated keyup event
       $(this).off('keyup');
     });
 
@@ -4978,8 +4978,8 @@ S2.define('select2/options',[
     if ($e.data('select2Tags')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
-          'Select2: The `data-select2-tags` attribute has been changed to ' +
-          'use the `data-data` and `data-tags="true"` attributes and will be ' +
+          'Select2: The data-select2-tags attribute has been changed to ' +
+          'use the data-data and data-tags="true" attributes and will be ' +
           'removed in future versions of Select2.'
         );
       }
@@ -4991,8 +4991,8 @@ S2.define('select2/options',[
     if ($e.data('ajaxUrl')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
-          'Select2: The `data-ajax-url` attribute has been changed to ' +
-          '`data-ajax--url` and support for the old attribute will be removed' +
+          'Select2: The data-ajax-url attribute has been changed to ' +
+          'data-ajax--url and support for the old attribute will be removed' +
           ' in future versions of Select2.'
         );
       }
@@ -5003,7 +5003,7 @@ S2.define('select2/options',[
 
     var dataset = {};
 
-    // Prefer the element's `dataset` attribute if it exists
+    // Prefer the element's dataset attribute if it exists
     // jQuery 1.x does not correctly handle data attributes with multiple dashes
     if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
       dataset = $.extend(true, {}, $e[0].dataset, $e.data());
@@ -5536,7 +5536,7 @@ S2.define('select2/core',[
   Select2.prototype.enable = function (args) {
     if (this.options.get('debug') && window.console && console.warn) {
       console.warn(
-        'Select2: The `select2("enable")` method has been deprecated and will' +
+        'Select2: The select2("enable") method has been deprecated and will' +
         ' be removed in later Select2 versions. Use $element.prop("disabled")' +
         ' instead.'
       );
@@ -5555,8 +5555,8 @@ S2.define('select2/core',[
     if (this.options.get('debug') &&
         arguments.length > 0 && window.console && console.warn) {
       console.warn(
-        'Select2: Data can no longer be set using `select2("data")`. You ' +
-        'should consider setting the value instead using `$element.val()`.'
+        'Select2: Data can no longer be set using select2("data"). You ' +
+        'should consider setting the value instead using $element.val().'
       );
     }
 
@@ -5572,7 +5572,7 @@ S2.define('select2/core',[
   Select2.prototype.val = function (args) {
     if (this.options.get('debug') && window.console && console.warn) {
       console.warn(
-        'Select2: The `select2("val")` method has been deprecated and will be' +
+        'Select2: The select2("val") method has been deprecated and will be' +
         ' removed in later Select2 versions. Use $element.val() instead.'
       );
     }
@@ -5818,11 +5818,11 @@ S2.define('select2/compat/initSelection',[
   function InitSelection (decorated, $element, options) {
     if (options.get('debug') && window.console && console.warn) {
       console.warn(
-        'Select2: The `initSelection` option has been deprecated in favor' +
-        ' of a custom data adapter that overrides the `current` method. ' +
+        'Select2: The initSelection option has been deprecated in favor' +
+        ' of a custom data adapter that overrides the current method. ' +
         'This method is now called multiple times instead of a single ' +
         'time when the instance is initialized. Support will be removed ' +
-        'for the `initSelection` option in future versions of Select2'
+        'for the initSelection option in future versions of Select2'
       );
     }
 
@@ -5867,7 +5867,7 @@ S2.define('select2/compat/inputData',[
         console.warn(
           'Select2: Using a hidden input with Select2 is no longer ' +
           'supported and may stop working in the future. It is recommended ' +
-          'to use a `<select>` element instead.'
+          'to use a <select> element instead.'
         );
       }
     }
@@ -6032,9 +6032,9 @@ S2.define('select2/compat/query',[
   function Query (decorated, $element, options) {
     if (options.get('debug') && window.console && console.warn) {
       console.warn(
-        'Select2: The `query` option has been deprecated in favor of a ' +
-        'custom data adapter that overrides the `query` method. Support ' +
-        'will be removed for the `query` option in future versions of ' +
+        'Select2: The query option has been deprecated in favor of a ' +
+        'custom data adapter that overrides the query method. Support ' +
+        'will be removed for the query option in future versions of ' +
         'Select2.'
       );
     }
@@ -6410,7 +6410,7 @@ S2.define('jquery.select2',[
           ret = instance[options].apply(instance, args);
         });
 
-        // Check if we should be returning `this`
+        // Check if we should be returning this
         if ($.inArray(options, thisMethods) > -1) {
           return this;
         }

@@ -49,7 +49,7 @@ function modalEvent(button) {
 	button.addEventListener('click', () => {
 		const trigger = button.getAttribute('data-modal-trigger');
 		// console.log('trigger', trigger)
-		const modal = document.querySelector(`[data-modal=${trigger}]`);
+		const modal = document.querySelector([data-modal=${trigger}]);
 		// console.log('modal', modal)
 		const contentWrapper = modal.querySelector('.content-wrapper');
 		const close = modal.querySelector('.close');
@@ -94,7 +94,7 @@ perspec.addEventListener('animationend', function (e) {
                 let updown = [800, -800]
                 let randomY = updown[Math.floor(Math.random() * updown.length)];
                 let randomX = Math.floor(Math.random() * 1000) - 1000;
-                elem.style.transform = `translate(${randomX}px, ${randomY}px) rotate(-540deg)`
+                elem.style.transform = translate(${randomX}px, ${randomY}px) rotate(-540deg)
                 elem.style.transition = "transform 1s ease, opacity 2s";
                 elem.style.opacity = "0";
                 counter--;

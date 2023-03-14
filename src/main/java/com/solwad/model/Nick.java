@@ -8,13 +8,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "temp")
+@Table(name = "temporal")
 public class Nick {
 	@Id
 	public int id_nick;
 	@OneToOne
-    @JoinColumn(name="user", referencedColumnName = "id_user")
-	public Usuario user;
+    @JoinColumn(name="usuario", referencedColumnName = "id_user")
+	public Usuario usuario;
 	
 	
 	public int getId_nick() {
@@ -24,10 +24,10 @@ public class Nick {
 		this.id_nick = id_nick;
 	}
 	public Usuario getUser() {
-		return user;
+		return usuario;
 	}
-	public void setUser(Usuario user) {
-		this.user = user;
+	public void setUser(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

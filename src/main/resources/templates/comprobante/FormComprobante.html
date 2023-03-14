@@ -44,9 +44,9 @@
                         </div>
                         <div class="espacio4">
                             <input type="text" placeholder="Ingrese el trabajador"
-                                th:value="${nick.user.dni_traba.nombre_traba + ' ' + nick.user.dni_traba.apellido_traba}"
+                                th:value="${nick.usuario.dni_traba.nombre_traba + ' ' + nick.usuario.dni_traba.apellido_traba}"
                                 maxlength="21" required />
-                            <input type="text" name="nomTraba" th:value="${nick.user.id_user}" hidden>
+                            <input type="text" name="nomTraba" th:value="${nick.usuario.id_user}" hidden>
                             <span>METODO DE PAGO</span>
                             <select name="tipoPago" id="tp">
                                 <option value="" selected disabled>Tipo Pago</option>

@@ -1173,7 +1173,7 @@
 		 * @instance
 		 * @param {*} [value] - The value to set for the cell. If not supplied the current value of the cell is returned.
 		 * @param {boolean} [redraw=true] - Whether or not to redraw the row once the value has been set.
-		 * @param {boolean} [redrawSelf=true] - Whether or not to redraw the cell itself once the value has been set, if `false` this will override the supplied `redraw` value and prevent the row from redrawing as well.
+		 * @param {boolean} [redrawSelf=true] - Whether or not to redraw the cell itself once the value has been set, if false this will override the supplied redraw value and prevent the row from redrawing as well.
 		 * @returns {(*|undefined)}
 		 * @this FooTable.Cell
 		 */
@@ -1300,7 +1300,7 @@
 			 * @instance
 			 * @readonly
 			 * @type {boolean}
-			 * @description Internal columns or there cells will not be returned when calling methods such as `FooTable.Row#val`.
+			 * @description Internal columns or there cells will not be returned when calling methods such as FooTable.Row#val.
 			 */
 			this.internal = false;
 			this.define(definition);
@@ -1687,7 +1687,7 @@
 		 * @instance
 		 * @param {object} [data] - The data to set for the row. If not supplied the current value of the row is returned.
 		 * @param {boolean} [redraw=true] - Whether or not to redraw the table once the value has been set.
-		 * @param {boolean} [redrawSelf=true] - Whether or not to redraw the row itself once the value has been set, if `false` this will override the supplied `redraw` value and prevent the table from redrawing as well.
+		 * @param {boolean} [redrawSelf=true] - Whether or not to redraw the row itself once the value has been set, if false this will override the supplied redraw value and prevent the table from redrawing as well.
 		 * @returns {(*|undefined)}
 		 */
 		val: function(data, redraw, redrawSelf){
@@ -2206,7 +2206,7 @@
 			// Clone the current table and insert it into the original's place
 			var $elCopy = self.$el.clone().insertBefore(self.$el);
 
-			// Detach `self.$el` from the DOM, retaining its event handlers
+			// Detach self.$el from the DOM, retaining its event handlers
 			self.$el.detach();
 
 			// when drawing the order that the components are executed is important so chain the methods but use promises to retain async safety.
@@ -2243,7 +2243,7 @@
 					console.error('FooTable: unhandled error thrown during a draw operation.', err);
 				}
 			}).always(function(){
-				// Replace the copy that we added above with the modified `self.$el`
+				// Replace the copy that we added above with the modified self.$el
 				$elCopy.replaceWith(self.$el);
 				self.$loader.remove();
 			});
@@ -5709,7 +5709,7 @@
 		/**
 		 * Gets or sets the current page size.
 		 * @instance
-		 * @param {(number|string)} [value] - The new page size to use, this value is supplied to `parseInt` so strings can be used. If not supplied or an invalid valid the current page size is returned.
+		 * @param {(number|string)} [value] - The new page size to use, this value is supplied to parseInt so strings can be used. If not supplied or an invalid valid the current page size is returned.
 		 * @returns {(number|undefined)}
 		 */
 		pageSize: function(value){

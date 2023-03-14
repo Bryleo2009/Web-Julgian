@@ -19,27 +19,27 @@ public interface IProductoRepo extends CrudRepository<Producto, Integer> {
     void deleteproducto();
 
     @Modifying
-    @Query(value = "alter table `solwad`.`producto` AUTO_INCREMENT=1;", nativeQuery = true)
+    @Query(value = "alter table producto AUTO_INCREMENT=1;", nativeQuery = true)
     void reinicioproducto();
 
     @Modifying
-    @Query(value = "INSERT INTO `solwad`.`producto`\r\n"
-            + "(`descripcion_product`,\r\n"
-            + "`precio_uni`,\r\n"
-            + "`stock_product`,\r\n"
-            + "`talla_product`,\r\n"
-            + "`id_categ`)\r\n"
+    @Query(value = "INSERT INTO producto\r\n"
+            + "(descripcion_product,\r\n"
+            + "precio_uni,\r\n"
+            + "stock_product,\r\n"
+            + "talla_product,\r\n"
+            + "id_categ)\r\n"
             + "VALUES\r\n"
             + "('NULL',1,1,1,1);", nativeQuery = true)
     void nulo();
 
     @Modifying
-    @Query(value = "INSERT INTO `solwad`.`producto`\r\n"
-            + "(`descripcion_product`,\r\n"
-            + "`precio_uni`,\r\n"
-            + "`stock_product`,\r\n"
-            + "`talla_product`,\r\n"
-            + "`id_categ`)\r\n"
+    @Query(value = "INSERT INTO producto\r\n"
+            + "(descripcion_product,\r\n"
+            + "precio_uni,\r\n"
+            + "stock_product,\r\n"
+            + "talla_product,\r\n"
+            + "id_categ)\r\n"
             + "VALUES\r\n"
             + "('Pantalón Jogger Hombre Doo Australia',129.90,12,32,2);", nativeQuery = true)
     void prueba();

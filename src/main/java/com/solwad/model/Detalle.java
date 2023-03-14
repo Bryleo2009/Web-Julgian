@@ -26,6 +26,7 @@ public class Detalle {
 	public double precioTotal_detalle; //2.00
 	@Column(name = "producto_detalle", nullable = false)
 	public String producto_detalle;
+	@Column(name = "id_product", nullable = true)
 	public int id_product;
 	public String imagen;
 	@ManyToOne

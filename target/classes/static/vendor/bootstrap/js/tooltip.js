@@ -104,24 +104,24 @@ var Tooltip = function () {
    * @param {HTMLElement} reference - The DOM node used as reference of the tooltip (it can be a jQuery element).
    * @param {Object} options
    * @param {String} options.placement=bottom
-   *      Placement of the popper accepted values: `top(-start, -end), right(-start, -end), bottom(-start, -end),
-   *      left(-start, -end)`
+   *      Placement of the popper accepted values: top(-start, -end), right(-start, -end), bottom(-start, -end),
+   *      left(-start, -end)
    * @param {HTMLElement|String|false} options.container=false - Append the tooltip to a specific element.
    * @param {Number|Object} options.delay=0
    *      Delay showing and hiding the tooltip (ms) - does not apply to manual trigger type.
    *      If a number is supplied, delay is applied to both hide/show.
-   *      Object structure is: `{ show: 500, hide: 100 }`
-   * @param {Boolean} options.html=false - Insert HTML into the tooltip. If false, the content will inserted with `innerText`.
+   *      Object structure is: { show: 500, hide: 100 }
+   * @param {Boolean} options.html=false - Insert HTML into the tooltip. If false, the content will inserted with innerText.
    * @param {String|PlacementFunction} options.placement='top' - One of the allowed placements, or a function returning one of them.
    * @param {String} [options.template='<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>']
    *      Base HTML to used when creating the tooltip.
-   *      The tooltip's `title` will be injected into the `.tooltip-inner` or `.tooltip__inner`.
-   *      `.tooltip-arrow` or `.tooltip__arrow` will become the tooltip's arrow.
-   *      The outermost wrapper element should have the `.tooltip` class.
-   * @param {String|HTMLElement|TitleFunction} options.title='' - Default title value if `title` attribute isn't present.
+   *      The tooltip's title will be injected into the .tooltip-inner or .tooltip__inner.
+   *      .tooltip-arrow or .tooltip__arrow will become the tooltip's arrow.
+   *      The outermost wrapper element should have the .tooltip class.
+   * @param {String|HTMLElement|TitleFunction} options.title='' - Default title value if title attribute isn't present.
    * @param {String} [options.trigger='hover focus']
    *      How tooltip is triggered - click, hover, focus, manual.
-   *      You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger.
+   *      You may pass multiple triggers; separate them with a space. manual cannot be combined with any other trigger.
    * @param {HTMLElement} options.boundariesElement
    *      The element used as boundaries for the tooltip. For more information refer to Popper.js'
    *      [boundariesElement docs](https://popper.js.org/popper-documentation.html)
@@ -222,7 +222,7 @@ var Tooltip = function () {
       // add unique ID to our tooltip (needed for accessibility reasons)
       tooltipNode.id = 'tooltip_' + Math.random().toString(36).substr(2, 10);
 
-      // set initial `aria-hidden` state to `false` (it's visible!)
+      // set initial aria-hidden state to false (it's visible!)
       tooltipNode.setAttribute('aria-hidden', 'false');
 
       // add title to tooltip
@@ -231,11 +231,11 @@ var Tooltip = function () {
         // if title is a node, append it only if allowHtml is true
         allowHtml && titleNode.appendChild(title);
       } else if (isFunction(title)) {
-        // if title is a function, call it and set innerText or innerHtml depending by `allowHtml` value
+        // if title is a function, call it and set innerText or innerHtml depending by allowHtml value
         var titleText = title.call(reference);
         allowHtml ? titleNode.innerHTML = titleText : titleNode.innerText = titleText;
       } else {
-        // if it's just a simple text, set innerText or innerHtml depending by `allowHtml` value
+        // if it's just a simple text, set innerText or innerHtml depending by allowHtml value
         allowHtml ? titleNode.innerHTML = title : titleNode.innerText = title;
       }
 
@@ -270,7 +270,7 @@ var Tooltip = function () {
       // create tooltip node
       var tooltipNode = this._create(reference, options.template, title, options.html);
 
-      // Add `aria-describedby` to our reference element for accessibility reasons
+      // Add aria-describedby to our reference element for accessibility reasons
       reference.setAttribute('aria-describedby', tooltipNode.id);
 
       // append tooltip to container
@@ -349,7 +349,7 @@ var Tooltip = function () {
       if (typeof container === 'string') {
         container = window.document.querySelector(container);
       } else if (container === false) {
-        // if container is `false`, set it to reference parent
+        // if container is false, set it to reference parent
         container = reference.parentNode;
       }
       return container;

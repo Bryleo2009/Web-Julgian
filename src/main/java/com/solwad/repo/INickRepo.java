@@ -14,7 +14,7 @@ import com.solwad.model.Usuario;
 @Repository
 public interface INickRepo extends CrudRepository<Nick, Integer>{
 	@Modifying
-	@Query(value="DELETE FROM temp", nativeQuery = true)
+	@Query(value="DELETE FROM temporal", nativeQuery = true)
 	void deleten();
 	
 	

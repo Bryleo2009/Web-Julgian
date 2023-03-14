@@ -21,12 +21,12 @@ public interface ICategoriaRepo extends CrudRepository<Categoria, Integer>{
 	void createcategoria();
 	
 	@Modifying
-	@Query(value="alter table `solwad`.`categoria_product` AUTO_INCREMENT=1;", nativeQuery = true)
+	@Query(value="alter table categoria_product AUTO_INCREMENT=1;", nativeQuery = true)
 	void reiniciocategoria();
 	
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`categoria_product`\r\n"
-			+ "(`nombre_categ`)\r\n"
+	@Query(value="INSERT INTO categoria_product\r\n"
+			+ "(nombre_categ)\r\n"
 			+ "VALUES ('Joggers');", nativeQuery = true)
 	void prueba();
 }

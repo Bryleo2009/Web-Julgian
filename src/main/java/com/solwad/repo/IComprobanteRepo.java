@@ -16,31 +16,31 @@ public interface IComprobanteRepo extends CrudRepository<Comprobante, String>{
 	@Query(value="DELETE FROM comprobante", nativeQuery = true)
 	void deleten();
 	@Modifying
-	@Query(value="alter table `solwad`.`comprobante` AUTO_INCREMENT=1;", nativeQuery = true)
+	@Query(value="alter table comprobante AUTO_INCREMENT=1;", nativeQuery = true)
 	void reinicio();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`comprobante`\r\n"
-			+ "(`id_comp`,`fecha_emi_comp`,\r\n"
-			+ "`ident_client_comp`,\r\n"
-			+ "`monto_subtotal_comp`,\r\n"
-			+ "`monto_total_comp`,\r\n"
-			+ "`nom_client_comp`,\r\n"
-			+ "`id_tc`,\r\n"
-			+ "`id_tp`,\r\n"
-			+ "`id_user`)\r\n"
+	@Query(value="INSERT INTO comprobante\r\n"
+			+ "(id_comp,fecha_emi_comp,\r\n"
+			+ "ident_client_comp,\r\n"
+			+ "monto_subtotal_comp,\r\n"
+			+ "monto_total_comp,\r\n"
+			+ "nom_client_comp,\r\n"
+			+ "id_tc,\r\n"
+			+ "id_tp,\r\n"
+			+ "id_user)\r\n"
 			+ "VALUES\r\n"
 			+ "('N00000','2000-01-01','00000000',1,1,'NULL',1,1,1);", nativeQuery = true)
 	void nulo();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`comprobante`\r\n"
-			+ "(`id_comp`,`fecha_emi_comp`,\r\n"
-			+ "`ident_client_comp`,\r\n"
-			+ "`monto_subtotal_comp`,\r\n"
-			+ "`monto_total_comp`,\r\n"
-			+ "`nom_client_comp`,\r\n"
-			+ "`id_tc`,\r\n"
-			+ "`id_tp`,\r\n"
-			+ "`id_user`)\r\n"
+	@Query(value="INSERT INTO comprobante\r\n"
+			+ "(id_comp,fecha_emi_comp,\r\n"
+			+ "ident_client_comp,\r\n"
+			+ "monto_subtotal_comp,\r\n"
+			+ "monto_total_comp,\r\n"
+			+ "nom_client_comp,\r\n"
+			+ "id_tc,\r\n"
+			+ "id_tp,\r\n"
+			+ "id_user)\r\n"
 			+ "VALUES\r\n"
 			+ "('N00001','2000-08-24','107185092608',129.90,259.80,'Of System sac',1,1,2);", nativeQuery = true)
 	void prueba();

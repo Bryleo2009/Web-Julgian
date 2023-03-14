@@ -17,27 +17,27 @@ public interface ITrabajadorRepo extends CrudRepository<Trabajador, String>{
 	@Query(value="DELETE FROM trabajador", nativeQuery = true)
 	void deleten();
 	@Modifying
-	@Query(value="alter table `solwad`.`trabajador` AUTO_INCREMENT=1;", nativeQuery = true)
+	@Query(value="alter table trabajador AUTO_INCREMENT=1;", nativeQuery = true)
 	void reinicio();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`trabajador`\r\n"
-			+ "(`dni_traba`,\r\n"
-			+ "`apellido_traba`,\r\n"
-			+ "`direccion_traba`,\r\n"
-			+ "`fecha_nac_traba`,\r\n"
-			+ "`nombre_traba`,\r\n"
-			+ "`telefono_traba`)\r\n"
+	@Query(value="INSERT INTO trabajador\r\n"
+			+ "(dni_traba,\r\n"
+			+ "apellido_traba,\r\n"
+			+ "direccion_traba,\r\n"
+			+ "fecha_nac_traba,\r\n"
+			+ "nombre_traba,\r\n"
+			+ "telefono_traba)\r\n"
 			+ "VALUES\r\n"
 			+ "('00000000','NULL',null,'2000-01-01','NULL',null);", nativeQuery = true)
 	void nulo();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`trabajador`\r\n"
-			+ "(`dni_traba`,\r\n"
-			+ "`apellido_traba`,\r\n"
-			+ "`direccion_traba`,\r\n"
-			+ "`fecha_nac_traba`,\r\n"
-			+ "`nombre_traba`,\r\n"
-			+ "`telefono_traba`)\r\n"
+	@Query(value="INSERT INTO trabajador\r\n"
+			+ "(dni_traba,\r\n"
+			+ "apellido_traba,\r\n"
+			+ "direccion_traba,\r\n"
+			+ "fecha_nac_traba,\r\n"
+			+ "nombre_traba,\r\n"
+			+ "telefono_traba)\r\n"
 			+ "VALUES\r\n"
 			+ "('71850926','Morán Vega','Psj. Federico Villareal #147','2000-08-24','Bryan Andrés','969432568');", nativeQuery = true)
 	void prueba();

@@ -36,7 +36,7 @@
             
             <td style="text-align: center;">
               <a th:href="@{/trabajadores/edit_traba/(dni_traba=${trabajador.dni_traba})}"><i class="bi bi-pencil"></i></a>
-              <a th:if="${nick.user.dni_traba.dni_traba != trabajador.dni_traba}" th:href="@{/trabajadores/eliminar_traba/(dni_traba=${trabajador.dni_traba})}" onclick="modal(this,'eliminar')" ><i class="bi bi-trash3-fill"></i></a>
+              <a th:if="${nick.usuario.dni_traba.dni_traba != trabajador.dni_traba}" th:href="@{/trabajadores/eliminar_traba/(dni_traba=${trabajador.dni_traba})}" onclick="modal(this,'eliminar')" ><i class="bi bi-trash3-fill"></i></a>
               <a th:href="@{/trabajadores/detalle_traba/(dni_traba=${trabajador.dni_traba})}"><i class="bi bi-search"></i></a>
             </td>
           </tr>

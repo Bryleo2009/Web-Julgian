@@ -16,17 +16,17 @@ public interface ITipoComproRepo extends CrudRepository<TipoCompro, Integer>{
 	@Query(value="DELETE FROM tipo_compro", nativeQuery = true)
 	void deleten();
 	@Modifying
-	@Query(value="alter table `solwad`.`tipo_compro` AUTO_INCREMENT=1;", nativeQuery = true)
+	@Query(value="alter table tipo_compro AUTO_INCREMENT=1;", nativeQuery = true)
 	void reinicio();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`tipo_compro`\r\n"
-			+ "(`nombre_tc`)\r\n"
+	@Query(value="INSERT INTO tipo_compro\r\n"
+			+ "(nombre_tc)\r\n"
 			+ "VALUES\r\n"
 			+ "('Boleta');", nativeQuery = true)
 	void tc1();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`tipo_compro`\r\n"
-			+ "(`nombre_tc`)\r\n"
+	@Query(value="INSERT INTO tipo_compro\r\n"
+			+ "(nombre_tc)\r\n"
 			+ "VALUES\r\n"
 			+ "('Factura');", nativeQuery = true)
 	void tc2();

@@ -13,8 +13,6 @@ Recomendaciones
 Arquitectura
 -   Puerto 8181 -> localhost:8181/
 -   Base de datos -> solwad
--   User BD -> root
--   Pass BD -> 
 -   Implementación de base de datos Mysql
 -   Elaborado en STS
 -   Uso de Spring boot
@@ -22,3 +20,4 @@ Arquitectura
 -   Uso de Spring Security
 *   Para relleno de datos, utilizar -> localhost:8181/prueba
 *   Para eliminación de datos, utilizar -> localhost:8181/delete
+*   Usuario de prueba -> admin / 12345

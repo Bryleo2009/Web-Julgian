@@ -15,17 +15,17 @@ public interface IRolRepo extends CrudRepository<Rol, Integer>{
 	@Query(value="DELETE FROM rol", nativeQuery = true)
 	void deleten();
 	@Modifying
-	@Query(value="alter table `solwad`.`rol` AUTO_INCREMENT=1;", nativeQuery = true)
+	@Query(value="alter table rol AUTO_INCREMENT=1;", nativeQuery = true)
 	void reinicio();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`rol`\r\n"
-			+ "(`nombre_tp`)\r\n"
+	@Query(value="INSERT INTO rol\r\n"
+			+ "(nombre_tp)\r\n"
 			+ "VALUES\r\n"
 			+ "('ROLE_GERENTE');", nativeQuery = true)
 	void rol1();
 	@Modifying
-	@Query(value="INSERT INTO `solwad`.`rol`\r\n"
-			+ "(`nombre_tp`)\r\n"
+	@Query(value="INSERT INTO rol\r\n"
+			+ "(nombre_tp)\r\n"
 			+ "VALUES\r\n"
 			+ "('ROLE_EMPLEADO');", nativeQuery = true)
 	void rol2();
